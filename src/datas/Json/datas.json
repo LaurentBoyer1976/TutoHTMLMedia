@@ -1,0 +1,463 @@
+{
+  "elements": [
+    {
+      "id": 1,
+      "balise": "audio",
+      "section": "Élément HTML",
+      "description": "L'élément HTML est utilisé afin d'intégrer un contenu sonore dans un document. Il peut contenir une ou plusieurs sources audio représentées avec l'attribut src ou l'élément. Le navigateur choisira celle qui convient le mieux. Il peut également être la destination de médias diffusés en continu, en utilisant un MediaStream.",
+      "syntaxe": [
+        {
+          "titre": "Exemple de syntaxe simple",
+          "code": "<figure>\n<figcaption>Listen to the T.rex:</figcaption>\n<audio controls src=\"/shared-assets/audio/t-rex-roar.mp3\"></audio>\n<a href=\"/shared-assets/audio/t-rex-roar.mp3\"> Download audio </a>\n</figure>"
+        }
+      ],
+      "attributs": [
+        {
+          "name": "autoplay",
+          "type": "booléen",
+          "description": "S'il est spécifié, l'audio commencera automatiquement la lecture dès qu'il pourra le faire, sans attendre la fin du téléchargement de l'ensemble du fichier audio."
+        },
+        {
+          "name": "controls",
+          "type": "booléen",
+          "description": "Si l'attribut est présent, le navigateur affichera des contrôles pour que l'utilisateur puisse gérer la lecture, le volume, et le déplacement du curseur de lecture."
+        },
+        {
+          "name": "crossorigin",
+          "type": "valeur contrainte",
+          "description": "Indique comment le CORS doit être utilisé afin de récupérer la ressource. Les ressources utilisant le CORS peuvent être réutilisées dans un élément ```<canvas>``` sans corrompre celui-ci.",
+          "valeurs": [
+            "anonymous",
+            "use-credentials"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "balise": "video",
+      "section": "Élément HTML",
+      "description": "L'élément HTML ```<video>``` intègre un lecteur de média qui prend en charge la lecture vidéo dans le document.",
+      "syntaxe": [
+        {
+          "titre": "Exemple de syntaxe simple",
+          "code": "<video controls width=\"250\">\n    <source src=\"/shared-assets/videos/flower.webm\" type=\"video/webm\" />\n    <source src=\"/shared-assets/videos/flower.mp4\" type=\"video/mp4\" />\n    Télécharger la vidéo\n    <a href=\"/shared-assets/videos/flower.webm\">WEBM</a>\n    ou\n    <a href=\"/shared-assets/videos/flower.mp4\">MP4</a>\n    .\n</video>"
+        }
+      ],
+      "attributs": [
+        {
+          "name": "autoplay",
+          "type": "booléen",
+          "description": "Indique que la vidéo doit automatiquement être lancée dès qu'elle peut être jouée sans être arrêtée par le chargement des données."
+        },
+        {
+          "name": "controls",
+          "type": "booléen",
+          "description": "Si cet attribut est présent, le navigateur affichera des contrôles pour permettre à l'utilisateur de contrôler la lecture de la vidéo, le volume et la mise sur pause."
+        },
+        {
+          "name": "crossorigin",
+          "type": "valeur contrainte",
+          "description": "Indique comment le CORS doit être utilisé afin de récupérer la ressource.",
+          "valeurs": [
+            "anonymous",
+            "use-credentials"
+          ]
+        },
+        {
+          "name": "height",
+          "type": "pixels CSS",
+          "description": "La hauteur de la zone où afficher la vidéo."
+        },
+        {
+          "name": "loop",
+          "type": "booléen",
+          "description": "Indique que la vidéo doit être jouée en boucle."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "balise": "img",
+      "section": "Élément HTML",
+      "description": "L'élément HTML ```<img>``` intègre une image dans le document. C'est un **élément vide** qui n'a pas de balise de fermeture.",
+      "syntaxe": [
+        {
+          "titre": "Exemple de syntaxe simple",
+          "code": "<img src=\"/shared-assets/images/sunset.jpg\"\n         alt=\"Coucher de soleil sur l'océan\">"
+        },
+        {
+          "titre": "Exemple avec attributs supplémentaires",
+          "code": "<img src=\"/shared-assets/images/landscape.jpg\"\n         alt=\"Paysage de montagne enneigée\"\n         width=\"800\"\n         height=\"600\"\n         loading=\"lazy\">"
+        }
+      ],
+      "attributs": [
+        {
+          "name": "src",
+          "type": "obligatoire",
+          "description": "Spécifie l'URL de l'image à afficher."
+        },
+        {
+          "name": "alt",
+          "type": "obligatoire (pour l'accessibilité)",
+          "description": "Fournit un texte alternatif pour l'image."
+        },
+        {
+          "name": "width",
+          "type": "pixels",
+          "description": "La largeur intrinsèque de l'image en pixels (sans unité)."
+        },
+        {
+          "name": "loading",
+          "type": "valeur contrainte",
+          "description": "Indique comment le navigateur doit charger l'image.",
+          "valeurs": [
+            "eager",
+            "lazy"
+          ]
+        },
+        {
+          "name": "srcset",
+          "type": "responsive",
+          "description": "Définit un ensemble d'images sources que le navigateur peut choisir en fonction de la densité de pixels ou de la largeur de la fenêtre."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "balise": "picture",
+      "section": "Élément HTML",
+      "description": "L'élément HTML ```<picture>``` est un conteneur utilisé pour spécifier plusieurs sources pour un élément ```<img>``` qu'il contient.",
+      "syntaxe": [
+        {
+          "titre": "Exemple de syntaxe simple",
+          "code": "<picture>\n        <source srcset=\"/shared-assets/images/photo.avif\" type=\"image/avif\">\n        <source srcset=\"/shared-assets/images/photo.webp\" type=\"image/webp\">\n        <img src=\"/shared-assets/images/photo.jpg\" alt=\"Belle photo de paysage\">\n    </picture>"
+        },
+        {
+          "titre": "Exemple avec media queries",
+          "code": "<picture>\n        <source media=\"(min-width: 1200px)\" srcset=\"large.jpg\">\n        <source media=\"(min-width: 768px)\" srcset=\"medium.jpg\">\n        <img src=\"small.jpg\" alt=\"Image responsive\">\n    </picture>"
+        }
+      ],
+      "attributs": [
+        {
+          "name": "srcset (sur <source>)",
+          "type": "requis",
+          "description": "Spécifie l'URL de l'image à utiliser dans différents contextes."
+        },
+        {
+          "name": "type (sur <source>)",
+          "type": "MIME",
+          "description": "Le type MIME de l'image."
+        },
+        {
+          "name": "media (sur <source>)",
+          "type": "media query",
+          "description": "Spécifie une media query que le navigateur évalue pour déterminer si cette source doit être utilisée."
+        },
+        {
+          "name": "sizes (sur <source>)",
+          "type": "responsive",
+          "description": "Spécifie la taille d'affichage prévue de l'image pour différentes conditions de mise en page."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "balise": "source",
+      "section": "Élément HTML",
+      "description": "L'élément HTML ```<source>``` spécifie plusieurs ressources médias pour les éléments ```<picture>```, ```<audio>``` ou ```<video>```.",
+      "syntaxe": [
+        {
+          "titre": "Exemple de syntaxe simple avec <video>",
+          "code": "<video controls width=\"250\">\n        <source src=\"/shared-assets/videos/flower.webm\" type=\"video/webm\" />\n        <source src=\"/shared-assets/videos/flower.mp4\" type=\"video/mp4\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
+        },
+        {
+          "titre": "Exemple de syntaxe avec <audio>",
+          "code": "<audio controls>\n        <source src=\"/shared-assets/audio/music.opus\" type=\"audio/opus\" />\n        <source src=\"/shared-assets/audio/music.ogg\" type=\"audio/ogg\" />\n        <source src=\"/shared-assets/audio/music.mp3\" type=\"audio/mpeg\" />\n        Votre navigateur ne prend pas en charge l'élément audio.\n    </audio>"
+        },
+        {
+          "titre": "Exemple de syntaxe avec <picture>",
+          "code": "<picture>\n        <source srcset=\"/shared-assets/images/photo.avif\" type=\"image/avif\" />\n        <source srcset=\"/shared-assets/images/photo.webp\" type=\"image/webp\" />\n        <img src=\"/shared-assets/...\" alt=\"Image par défaut\" />\n    </picture>"
+        }
+      ],
+      "attributs": [
+        {
+          "name": "type",
+          "type": "MIME",
+          "description": "Le type MIME de la ressource, éventuellement accompagné d'un paramètre `codecs`."
+        },
+        {
+          "name": "src",
+          "type": "requis (audio/video)",
+          "description": "L'URL de la ressource média. Ignoré dans un élément ```<picture>```."
+        },
+        {
+          "name": "srcset",
+          "type": "requis (<picture>)",
+          "description": "Liste de sources d'images possibles. Non autorisé pour ```<audio>``` et ```<video>```."
+        },
+        {
+          "name": "sizes",
+          "type": "uniquement (<picture>)",
+          "description": "Liste de tailles d'images sources séparées par des virgules."
+        },
+        {
+          "name": "media",
+          "type": "uniquement (<picture>)",
+          "description": "Requête média décrivant les conditions pour lesquelles cette source doit être utilisée."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "balise": "track",
+      "section": "Élément HTML",
+      "description": "L'élément HTML ```<track>``` est utilisé comme élément fils d'un élément ```<audio>``` ou ```<video>```. Il permet de fournir des pistes textuelles temporisées (sous-titres, légendes, chapitres) au format WebVTT.",
+      "syntaxe": [
+        {
+          "titre": "Exemple de syntaxe simple",
+          "code": "<video controls width=\"250\">\n        <source src=\"/shared-assets/videos/friday.mp4\" type=\"video/mp4\" />\n        <track default kind=\"captions\" srclang=\"fr\" src=\"/shared-assets/tracks/friday-fr.vtt\" />\n        <track kind=\"subtitles\" srclang=\"en\" src=\"/shared-assets/tracks/friday-en.vtt\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
+        }
+      ],
+      "attributs": [
+        {
+          "name": "default",
+          "type": "booléen",
+          "description": "Cette piste doit être activée par défaut."
+        },
+        {
+          "name": "kind",
+          "type": "valeur contrainte",
+          "description": "Définit la façon dont la piste textuelle doit être utilisée.",
+          "valeurs": [
+            "subtitles",
+            "captions",
+            "descriptions",
+            "chapters",
+            "metadata"
+          ]
+        },
+        {
+          "name": "src",
+          "type": "obligatoire",
+          "description": "L'adresse (URL) de la piste (fichier `.vtt`)."
+        },
+        {
+          "name": "srclang",
+          "type": "langue BCP 47",
+          "description": "La langue des données textuelles de la piste. Requis si `kind` vaut `subtitles`."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "balise": "canvas",
+      "section": "API Graphique",
+      "description": "L'élément HTML ```<canvas>``` est utilisé pour dessiner des graphiques, des animations et des compositions d'images à la volée via JavaScript.",
+      "syntaxe": [
+        {
+          "titre": "Exemple de syntaxe simple",
+          "code": "<canvas id=\"myCanvas\" width=\"800\" height=\"600\">\n        Votre navigateur ne prend pas en charge l'élément canvas.\n    </canvas>"
+        },
+        {
+          "titre": "Exemple avec dessin basique en JavaScript",
+          "code": "<canvas id=\"drawingCanvas\" width=\"400\" height=\"300\"></canvas>\n    <script>\n        const canvas = document.getElementById('drawingCanvas');\n        const ctx = canvas.getContext('2d');\n        // Dessiner un rectangle bleu\n        ctx.fillStyle = 'blue';\n        ctx.fillRect(50, 50, 200, 100);\n    </script>"
+        }
+      ],
+      "attributs": [
+        {
+          "name": "width",
+          "type": "pixels CSS",
+          "description": "La largeur du canvas en pixels CSS. Par défaut : 300 pixels."
+        },
+        {
+          "name": "height",
+          "type": "pixels CSS",
+          "description": "La hauteur du canvas en pixels CSS. Par défaut : 150 pixels."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "balise": "svg",
+      "section": "API Graphique",
+      "description": "L'élément HTML ```<svg>``` (Scalable Vector Graphics) définit un conteneur pour des graphiques vectoriels.",
+      "syntaxe": [
+        {
+          "titre": "Exemple de syntaxe simple",
+          "code": "<svg width=\"200\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\">\n        <circle cx=\"100\" cy=\"100\" r=\"80\" fill=\"#3498db\" />\n    </svg>"
+        },
+        {
+          "titre": "Exemple avec plusieurs formes",
+          "code": "<svg width=\"400\" height=\"300\" xmlns=\"http://www.w3.org/2000/svg\">\n        <rect x=\"50\" y=\"50\" width=\"150\" height=\"100\" fill=\"#2ecc71\" />\n        <circle cx=\"300\" cy=\"100\" r=\"60\" fill=\"#e74c3c\" />\n        <line x1=\"0\" y1=\"250\" x2=\"400\" y2=\"250\" stroke=\"#34495e\" stroke-width=\"3\" />\n    </svg>"
+        }
+      ],
+      "attributs": [
+        {
+          "name": "width",
+          "type": "pixels/pourcentages",
+          "description": "La largeur du SVG."
+        },
+        {
+          "name": "height",
+          "type": "pixels/pourcentages",
+          "description": "La hauteur du SVG."
+        },
+        {
+          "name": "viewBox",
+          "type": "coordonnées",
+          "description": "Définit la zone de l'espace SVG visible dans le viewport. Format : `min-x min-y width height`."
+        },
+        {
+          "name": "preserveAspectRatio",
+          "type": "valeur contrainte",
+          "description": "Contrôle comment le SVG doit être mis à l'échelle s'il ne correspond pas exactement au viewport."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "balise": "figure/figcaption",
+      "section": "Sémantique",
+      "description": "Les éléments HTML ```<figure>``` et ```<figcaption>``` sont utilisés ensemble pour regrouper du contenu multimédia (images, vidéos, etc.) avec une légende associée.",
+      "syntaxe": [
+        {
+          "titre": "Exemple de syntaxe simple",
+          "code": "<figure>\n        <img src=\"/shared-assets/images/landscape.jpg\" alt=\"Paysage de montagne\">\n        <figcaption>Vue panoramique des Alpes au lever du soleil</figcaption>\n    </figure>"
+        },
+        {
+          "titre": "Exemple avec plusieurs images",
+          "code": "<figure>\n        <img src=\"photo1.jpg\" alt=\"Photo 1\">\n        <img src=\"photo2.jpg\" alt=\"Photo 2\">\n        <img src=\"photo3.jpg\" alt=\"Photo 3\">\n        <figcaption>Collection de photos de voyage - Été 2024</figcaption>\n    </figure>"
+        },
+        {
+          "titre": "Exemple avec un extrait de code",
+          "code": "<figure>\n        <figcaption>Exemple de fonction JavaScript</figcaption>\n        <pre><code>\n            function calculateArea(r) {\n                return Math.PI * r * r;\n            }\n        </code></pre>\n    </figure>"
+        }
+      ],
+      "attributs": [
+        {
+          "name": "Attributs universels",
+          "type": "universel",
+          "description": "Les deux éléments incluent uniquement les attributs universels."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "balise": "object",
+      "section": "Élément Hérité/Générique",
+      "description": "L'élément HTML ```<object>``` représente une ressource externe qui peut être traitée comme une image, un contexte de navigation imbriqué ou une ressource à gérer via un plugin. Il permet un contenu de repli.",
+      "syntaxe": [
+        {
+          "titre": "Exemple de syntaxe simple avec une vidéo",
+          "code": "<object data=\"/shared-assets/videos/flower.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/shared-assets/videos/flower.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
+        },
+        {
+          "titre": "Exemple avec un PDF",
+          "code": "<object data=\"/documents/guide.pdf\"\n            type=\"application/pdf\"\n            width=\"100%\"\n            height=\"600\">\n        <p>Impossible d'afficher le PDF.\n           <a href=\"/documents/guide.pdf\">Télécharger le document</a>\n        </p>\n    </object>"
+        },
+        {
+          "titre": "Exemple avec une image SVG",
+          "code": "<object data=\"/images/diagram.svg\"\n            type=\"image/svg+xml\"\n            width=\"500\"\n            height=\"400\">\n        <img src=\"/images/diagram-fallback.png\" alt=\"Diagramme\">\n    </object>"
+        }
+      ],
+      "attributs": [
+        {
+          "name": "data",
+          "type": "URL",
+          "description": "L'adresse (URL) de la ressource."
+        },
+        {
+          "name": "type",
+          "type": "MIME",
+          "description": "Le type MIME de la ressource spécifiée par `data`."
+        },
+        {
+          "name": "typemustmatch",
+          "type": "booléen",
+          "description": "Indique si l'attribut `type` et le type MIME réel de la ressource doivent correspondre."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "balise": "embed",
+      "section": "Élément Hérité/Déconseillé",
+      "description": "L'élément HTML ```<embed>``` intègre du contenu externe (souvent un plugin). Il est déconseillé et n'a pas de balise de fermeture.",
+      "syntaxe": [
+        {
+          "titre": "Exemple de syntaxe simple",
+          "code": "<embed type=\"video/mp4\"\n           src=\"/shared-assets/videos/flower.mp4\"\n           width=\"640\"\n           height=\"480\">"
+        },
+        {
+          "titre": "Exemple avec un PDF",
+          "code": "<embed type=\"application/pdf\"\n           src=\"/documents/manuel.pdf\"\n           width=\"800\"\n           height=\"600\">"
+        }
+      ],
+      "attributs": [
+        {
+          "name": "src",
+          "type": "URL (obligatoire)",
+          "description": "L'URL de la ressource à intégrer."
+        },
+        {
+          "name": "type",
+          "type": "MIME",
+          "description": "Le type MIME à utiliser pour sélectionner le plugin à instancier."
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "balise": "BalisesAndElements_Index",
+      "section": "Index général",
+      "description": "Synthèse des principales balises média HTML5.",
+      "balises_listées": [
+        {
+          "balise": "audio",
+          "rôle": "Contenu audio"
+        },
+        {
+          "balise": "video",
+          "rôle": "Contenu vidéo"
+        },
+        {
+          "balise": "track",
+          "rôle": "Sous-titres/pistes textuelles"
+        },
+        {
+          "balise": "source",
+          "rôle": "Sources multiples pour audio/video/picture"
+        },
+        {
+          "balise": "embed",
+          "rôle": "Médias externes (déconseillé)"
+        },
+        {
+          "balise": "object",
+          "rôle": "Médias complexes/documents"
+        },
+        {
+          "balise": "picture",
+          "rôle": "Images responsives/Art direction"
+        },
+        {
+          "balise": "img",
+          "rôle": "Image standard"
+        },
+        {
+          "balise": "canvas",
+          "rôle": "Graphiques dynamiques JavaScript"
+        },
+        {
+          "balise": "svg",
+          "rôle": "Graphiques vectoriels"
+        },
+        {
+          "balise": "figure/figcaption",
+          "rôle": "Regroupement média + légende"
+        }
+      ]
+    }
+  ]
+}
