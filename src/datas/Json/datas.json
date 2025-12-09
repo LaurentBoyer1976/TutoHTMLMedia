@@ -160,7 +160,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<video controls width=\"640\" height=\"360\">\n    <source src=\"/video/14542855_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n    Télécharger la vidéo\n    <a href=\"/video/14733700_3840_2160_60fps.mp4\">MP4</a>\n</video>"
+          "code": "<video controls width=\"640\" height=\"360\">\n    <source src=\"/video/istockphoto-483045296-640_adpp_is.mp4\" type=\"video/mp4\" />\n    Télécharger la vidéo\n    <a href=\"/video/14733700_3840_2160_60fps.mp4\">MP4</a>\n</video>"
         }
       ],
       "attributs": [
@@ -288,7 +288,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple avec <video>",
-          "code": "<video controls width=\"640\" height=\"360\">\n        <source src=\"/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
+          "code": "<video controls width=\"640\" height=\"360\">\n        <source src=\"/video/istockphoto-483045296-640_adpp_is.mp4\" type=\"video/mp4\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
         },
         {
           "titre": "Exemple de syntaxe avec <audio>",
@@ -335,7 +335,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<video controls width=\"250\">\n        <source src=\"/video/14542855_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n       <track default kind=\"captions\" srclang=\"fr\" src=\"/shared-assets/tracks/friday-fr.vtt\" />\n        <track kind=\"subtitles\" srclang=\"en\" src=\"/shared-assets/tracks/friday-en.vtt\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
+          "code": "<video controls width=\"250\">\n        <source src=\"/video/istockphoto-483045296-640_adpp_is.mp4\" type=\"video/mp4\" />\n       <track default kind=\"captions\" srclang=\"fr\" src=\"/video/istockphoto-483045296-640_adpp_is.mp4\" />\n        <track kind=\"subtitles\" srclang=\"en\" src=\"/shared-assets/tracks/friday-en.vtt\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
         }
       ],
       "attributs": [
@@ -450,7 +450,7 @@
         },
         {
           "titre": "Exemple avec une vidéo",
-          "code": "<figure>\n        <video controls width=\"640\" height=\"360\">\n            <source src=\"/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n        </video>\n        <figcaption>Vidéo de démonstration - Paysage en mouvement</figcaption>\n    </figure>"
+          "code": "<figure>\n        <video controls width=\"640\" height=\"360\">\n            <source src=\"/video/istockphoto-483045296-640_adpp_is.mp4\" type=\"video/mp4\" />\n        </video>\n        <figcaption>Vidéo de démonstration - Lanterne de papier</figcaption>\n    </figure>"
         }
       ],
       "attributs": [
@@ -469,11 +469,11 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple avec une vidéo",
-          "code": "<object data=\"/video/14733700_3840_2160_60fps.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/video/14733700_3840_2160_60fps.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
+          "code": "<object data=\"/video/14733700_3840_2160_60fps.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/video/istockphoto-483045296-640_adpp_is.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
         },
         {
           "titre": "Exemple avec une deuxième vidéo",
-          "code": "<object data=\"/video/14542855_3840_2160_60fps.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/video/14542855_3840_2160_60fps.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
+          "code": "<object data=\"/video/14542855_3840_2160_60fps.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/video/istockphoto-1140675444-640_adpp_is.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
         },
         {
           "titre": "Exemple avec une image",
@@ -506,11 +506,11 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple avec une vidéo",
-          "code": "<embed type=\"video/mp4\"\n           src=\"/video/14733700_3840_2160_60fps.mp4\"\n           width=\"640\"\n           height=\"480\">"
+          "code": "<embed type=\"video/mp4\"\n           src=\"/video/istockphoto-1140675444-640_adpp_is.mp4\"\n           width=\"640\"\n           height=\"480\">"
         },
         {
           "titre": "Exemple avec une deuxième vidéo",
-          "code": "<embed type=\"video/mp4\"\n           src=\"/video/14542855_3840_2160_60fps.mp4\"\n           width=\"640\"\n           height=\"480\">"
+          "code": "<embed type=\"video/mp4\"\n           src=\"/video/istockphoto-1140675444-640_adpp_is.mp4\"\n           width=\"640\"\n           height=\"480\">"
         }
       ],
       "attributs": [
