@@ -99,6 +99,14 @@ figcaption {
   color: #666;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+figcaption span {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: inline;
 }
 
 figure img,
