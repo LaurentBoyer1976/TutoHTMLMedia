@@ -185,9 +185,9 @@ Consultez `/documentation` pour :
 - Démonstrations interactives
 - Bonnes pratiques
 
-## ✨ Auteur
+## ✨ Auteurs
 
-**Laurent Boyer**
+**Laurent Boyer et Stéphane Vallejo**
 - GitHub: [@LaurentBoyer1976](https://github.com/LaurentBoyer1976)
 - Branche: DevScriptJS
 
