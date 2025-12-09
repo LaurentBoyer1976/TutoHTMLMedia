@@ -197,6 +197,8 @@ const elements = elementsData.elements || [];
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+    gap: 0.5rem;
+    min-width: 0;
   }
 
   .element-card h3,
@@ -205,6 +207,8 @@ const elements = elementsData.elements || [];
     color: #667eea;
     margin: 0;
     font-family: 'Courier New', monospace;
+    min-width: 0;
+    flex-shrink: 1;
   }
 
   .api-card h3 {
@@ -227,6 +231,11 @@ const elements = elementsData.elements || [];
     background: #2a2a2a;
     padding: 0.3rem 0.6rem;
     border-radius: 0.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    flex-shrink: 1;
   }
 
   .element-description,

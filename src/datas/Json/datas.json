@@ -160,7 +160,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<video controls width=\"640\" height=\"360\">\n    <source src=\"/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n    Télécharger la vidéo\n    <a href=\"/video/14733700_3840_2160_60fps.mp4\">MP4</a>\n</video>"
+          "code": "<video controls width=\"640\" height=\"360\">\n    <source src=\"/video/14542855_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n    Télécharger la vidéo\n    <a href=\"/video/14733700_3840_2160_60fps.mp4\">MP4</a>\n</video>"
         }
       ],
       "attributs": [
