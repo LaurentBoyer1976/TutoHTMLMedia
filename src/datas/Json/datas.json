@@ -66,19 +66,19 @@
             "balise": "source",
             "type": "Source de Média",
             "description": "Spécifie plusieurs sources de média pour `<audio>` et `<video>`. Le navigateur choisit celle qu'il peut lire.",
-            "exemple": "<video controls><source src=\"/src/assets/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />Votre navigateur ne prend pas en charge la balise vidéo.</video>"
+            "exemple": "<video controls><source src=\"/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />Votre navigateur ne prend pas en charge la balise vidéo.</video>"
           },
           {
             "balise": "embed",
             "type": "Média Externe",
             "description": "Permet d'intégrer des médias externes (ex: fichiers Flash ou applications Java). Moins courant en HTML5.",
-            "exemple": "<embed type=\"video/mp4\" src=\"/src/assets/video/14733700_3840_2160_60fps.mp4\" width=\"250\" height=\"200\" />"
+            "exemple": "<embed type=\"video/mp4\" src=\"/video/14733700_3840_2160_60fps.mp4\" width=\"250\" height=\"200\" />"
           },
           {
             "balise": "object",
             "type": "Média/Contenu",
             "description": "Plus polyvalente que `<embed>`, peut intégrer différents types de contenu, y compris des médias.",
-            "exemple": "<object type=\"video/mp4\" data=\"/src/assets/video/14733700_3840_2160_60fps.mp4\" width=\"250\" height=\"200\"></object>"
+            "exemple": "<object type=\"video/mp4\" data=\"/video/14733700_3840_2160_60fps.mp4\" width=\"250\" height=\"200\"></object>"
           },
           {
             "balise": "picture",
@@ -95,7 +95,7 @@
             "balise": "img",
             "type": "Image",
             "description": "Essentielle pour afficher des images dans le contexte multimédia.",
-            "exemple": "<img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Paysage naturel\" />"
+            "exemple": "<img src=\"/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Paysage naturel\" />"
           },
           {
             "balise": "canvas",
@@ -127,7 +127,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<figure>\n<figcaption>Écoutez Bonbon :</figcaption>\n<audio controls src=\"/src/assets/audio/Bonbon/Bonbon.mp3\"></audio>\n<a href=\"/src/assets/audio/Bonbon/Bonbon.mp3\">Télécharger l'audio</a>\n</figure>"
+          "code": "<figure>\n<figcaption>Écoutez Bonbon :</figcaption>\n<audio controls src=\"/audio/Bonbon/Bonbon.mp3\"></audio>\n<a href=\"/audio/Bonbon/Bonbon.mp3\">Télécharger l'audio</a>\n</figure>"
         }
       ],
       "attributs": [
@@ -160,7 +160,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<video controls width=\"640\" height=\"360\">\n    <source src=\"/src/assets/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n    Télécharger la vidéo\n    <a href=\"/src/assets/video/14733700_3840_2160_60fps.mp4\">MP4</a>\n</video>"
+          "code": "<video controls width=\"640\" height=\"360\">\n    <source src=\"/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n    Télécharger la vidéo\n    <a href=\"/video/14733700_3840_2160_60fps.mp4\">MP4</a>\n</video>"
         }
       ],
       "attributs": [
@@ -203,11 +203,11 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\"\n         alt=\"Image iStock 1985150440\">"
+          "code": "<img src=\"/img/istockphoto-1985150440-1024x1024.jpg\"\n         alt=\"Image iStock 1985150440\">"
         },
         {
           "titre": "Exemple avec attributs supplémentaires",
-          "code": "<img src=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\"\n         alt=\"Image iStock 2098773559\"\n         width=\"800\"\n         height=\"600\"\n         loading=\"lazy\">"
+          "code": "<img src=\"/img/istockphoto-2098773559-1024x1024.jpg\"\n         alt=\"Image iStock 2098773559\"\n         width=\"800\"\n         height=\"600\"\n         loading=\"lazy\">"
         }
       ],
       "attributs": [
@@ -250,11 +250,11 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<picture>\n        <source srcset=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\" type=\"image/jpeg\">\n        <img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Belle photo de paysage\">\n    </picture>"
+          "code": "<picture>\n        <source srcset=\"/img/istockphoto-2098773559-1024x1024.jpg\" type=\"image/jpeg\">\n        <img src=\"/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Belle photo de paysage\">\n    </picture>"
         },
         {
           "titre": "Exemple avec media queries",
-          "code": "<picture>\n        <source media=\"(min-width: 1200px)\" srcset=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\">\n        <source media=\"(min-width: 768px)\" srcset=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\">\n        <img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Image responsive\">\n    </picture>"
+          "code": "<picture>\n        <source media=\"(min-width: 1200px)\" srcset=\"/img/istockphoto-2098773559-1024x1024.jpg\">\n        <source media=\"(min-width: 768px)\" srcset=\"/img/istockphoto-1985150440-1024x1024.jpg\">\n        <img src=\"/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Image responsive\">\n    </picture>"
         }
       ],
       "attributs": [
@@ -288,15 +288,15 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple avec <video>",
-          "code": "<video controls width=\"640\" height=\"360\">\n        <source src=\"/src/assets/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
+          "code": "<video controls width=\"640\" height=\"360\">\n        <source src=\"/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
         },
         {
           "titre": "Exemple de syntaxe avec <audio>",
-          "code": "<audio controls>\n        <source src=\"/src/assets/audio/Bonbon/Bonbon.mp3\" type=\"audio/mpeg\" />\n        Votre navigateur ne prend pas en charge l'élément audio.\n    </audio>"
+          "code": "<audio controls>\n        <source src=\"/audio/Bonbon/Bonbon.mp3\" type=\"audio/mpeg\" />\n        Votre navigateur ne prend pas en charge l'élément audio.\n    </audio>"
         },
         {
           "titre": "Exemple de syntaxe avec <picture>",
-      "code": "<picture>\n        <source srcset=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\" type=\"image/jpeg\" />\n        <source srcset=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" type=\"image/jpeg\" />\n        <img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Image par défaut\" />\n    </picture>"
+      "code": "<picture>\n        <source srcset=\"/img/istockphoto-2098773559-1024x1024.jpg\" type=\"image/jpeg\" />\n        <source srcset=\"/img/istockphoto-1985150440-1024x1024.jpg\" type=\"image/jpeg\" />\n        <img src=\"/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Image par défaut\" />\n    </picture>"
         }
       ],
       "attributs": [
@@ -335,7 +335,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<video controls width=\"250\">\n        <source src=\"/src/assets/video/14542855_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n       <track default kind=\"captions\" srclang=\"fr\" src=\"/shared-assets/tracks/friday-fr.vtt\" />\n        <track kind=\"subtitles\" srclang=\"en\" src=\"/shared-assets/tracks/friday-en.vtt\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
+          "code": "<video controls width=\"250\">\n        <source src=\"/video/14542855_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n       <track default kind=\"captions\" srclang=\"fr\" src=\"/shared-assets/tracks/friday-fr.vtt\" />\n        <track kind=\"subtitles\" srclang=\"en\" src=\"/shared-assets/tracks/friday-en.vtt\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
         }
       ],
       "attributs": [
@@ -442,15 +442,15 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<figure>\n        <img src=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\" alt=\"Paysage de montagne\">\n        <figcaption>Vue panoramique des Alpes au lever du soleil</figcaption>\n    </figure>"
+          "code": "<figure>\n        <img src=\"/img/istockphoto-2098773559-1024x1024.jpg\" alt=\"Paysage de montagne\">\n        <figcaption>Vue panoramique des Alpes au lever du soleil</figcaption>\n    </figure>"
         },
         {
           "titre": "Exemple avec plusieurs images",
-          "code": "<figure>\n        <img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Photo 1\">\n        <img src=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\" alt=\"Photo 2\">\n        <figcaption>Collection de photos de paysage</figcaption>\n    </figure>"
+          "code": "<figure>\n        <img src=\"/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Photo 1\">\n        <img src=\"/img/istockphoto-2098773559-1024x1024.jpg\" alt=\"Photo 2\">\n        <figcaption>Collection de photos de paysage</figcaption>\n    </figure>"
         },
         {
           "titre": "Exemple avec une vidéo",
-          "code": "<figure>\n        <video controls width=\"640\" height=\"360\">\n            <source src=\"/src/assets/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n        </video>\n        <figcaption>Vidéo de démonstration - Paysage en mouvement</figcaption>\n    </figure>"
+          "code": "<figure>\n        <video controls width=\"640\" height=\"360\">\n            <source src=\"/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n        </video>\n        <figcaption>Vidéo de démonstration - Paysage en mouvement</figcaption>\n    </figure>"
         }
       ],
       "attributs": [
@@ -469,15 +469,15 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple avec une vidéo",
-          "code": "<object data=\"/src/assets/video/14733700_3840_2160_60fps.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/src/assets/video/14733700_3840_2160_60fps.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
+          "code": "<object data=\"/video/14733700_3840_2160_60fps.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/video/14733700_3840_2160_60fps.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
         },
         {
           "titre": "Exemple avec une deuxième vidéo",
-          "code": "<object data=\"/src/assets/video/14542855_3840_2160_60fps.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/src/assets/video/14542855_3840_2160_60fps.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
+          "code": "<object data=\"/video/14542855_3840_2160_60fps.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/video/14542855_3840_2160_60fps.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
         },
         {
           "titre": "Exemple avec une image",
-          "code": "<object data=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\"\n            type=\"image/jpeg\"\n            width=\"500\"\n            height=\"400\">\n        <img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Image de secours\">\n    </object>"
+          "code": "<object data=\"/img/istockphoto-2098773559-1024x1024.jpg\"\n            type=\"image/jpeg\"\n            width=\"500\"\n            height=\"400\">\n        <img src=\"/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Image de secours\">\n    </object>"
         }
       ],
       "attributs": [
@@ -506,11 +506,11 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple avec une vidéo",
-          "code": "<embed type=\"video/mp4\"\n           src=\"/src/assets/video/14733700_3840_2160_60fps.mp4\"\n           width=\"640\"\n           height=\"480\">"
+          "code": "<embed type=\"video/mp4\"\n           src=\"/video/14733700_3840_2160_60fps.mp4\"\n           width=\"640\"\n           height=\"480\">"
         },
         {
           "titre": "Exemple avec une deuxième vidéo",
-          "code": "<embed type=\"video/mp4\"\n           src=\"/src/assets/video/14542855_3840_2160_60fps.mp4\"\n           width=\"640\"\n           height=\"480\">"
+          "code": "<embed type=\"video/mp4\"\n           src=\"/video/14542855_3840_2160_60fps.mp4\"\n           width=\"640\"\n           height=\"480\">"
         }
       ],
       "attributs": [
