@@ -1,0 +1,189 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Tutoriel complet sur les éléments HTML5 pour l'intégration de médias" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="main-header">
+      <nav class="main-nav">
+        <div class="nav-container">
+          <a href="/" class="logo">
+            <span class="logo-icon">🎬</span>
+            <span class="logo-text">HTML Media Tuto</span>
+          </a>
+          <ul class="nav-links">
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/documentation">Documentation</a></li>
+            <li><a href="https://developer.mozilla.org/fr/docs/Web/HTML" target="_blank" rel="noopener">MDN</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    
+    <slot />
+    
+    <footer class="main-footer">
+      <div class="footer-content">
+        <p>© 2025 Tutoriel HTML Media - Ressource éducative</p>
+        <div class="footer-links">
+          <a href="https://developer.mozilla.org/fr/" target="_blank" rel="noopener">MDN Web Docs</a>
+          <a href="https://github.com/LaurentBoyer1976/TutoHTMLMedia" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-header {
+    background: #1a1a1a;
+    border-bottom: 2px solid #667eea;
+    width: 100%;
+  }
+
+  .main-nav {
+    padding: 1rem 30px;
+    width: 100%;
+  }
+
+  .nav-container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  .logo-icon {
+    font-size: 1.8rem;
+  }
+
+  .logo:hover {
+    color: #667eea;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: #667eea;
+  }
+
+  .main-footer {
+    margin-top: auto;
+    background: #0d0d0d;
+    border-top: 2px solid #333;
+    padding: 2rem 30px;
+    color: #888;
+    width: 100%;
+  }
+
+  .footer-content {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-links a {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover {
+    color: #764ba2;
+  }
+
+  @media (prefers-color-scheme: light) {
+    .main-header {
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      color: #333;
+    }
+
+    .nav-links a {
+      color: #666;
+    }
+
+    .main-footer {
+      background: #f9f9f9;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-container {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .nav-links {
+      gap: 1rem;
+    }
+
+    .footer-content {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+</style>

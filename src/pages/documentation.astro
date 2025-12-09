@@ -1,0 +1,277 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../Styles/style.css';
+
+const markdownFiles = [
+  'audio', 'video', 'img', 'picture', 'source', 'track',
+  'canvas', 'svg', 'figureFigCaption', 'object', 'embed'
+];
+---
+
+<Layout title="Documentation - Éléments HTML Media">
+  <main class="docs-page">
+    <header class="docs-header">
+      <h1>📚 Documentation Complète</h1>
+      <p>Accédez à la documentation détaillée pour chaque élément HTML média et les API JavaScript</p>
+    </header>
+
+    <section class="docs-section">
+      <h2 class="section-title">🏷️ Éléments HTML5 Multimédia</h2>
+      <p class="section-desc">Balises HTML5 natives pour intégrer images, audio et vidéo</p>
+      <div class="docs-grid">
+        {markdownFiles.map(file => (
+          <a href={`/elements/${file.replace('figureFigCaption', 'figure')}`} class="doc-card">
+            <div class="doc-icon">📄</div>
+            <h3>&lt;{file.replace('figureFigCaption', 'figure')}&gt;</h3>
+            <p>Voir la documentation →</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="docs-section api-section">
+      <h2 class="section-title">⚡ API JavaScript Multimédia (Optionnel)</h2>
+      <p class="section-desc">
+        API JavaScript pour fonctionnalités avancées (webcam, micro, etc.)
+        <span class="badge-optional">Niveau Avancé</span>
+      </p>
+      <div class="docs-grid">
+        <a href="/api/getUserMedia" class="doc-card api-card">
+          <div class="doc-icon">🎥</div>
+          <h3>getUserMedia()</h3>
+          <p>Accès webcam & microphone →</p>
+          <span class="badge-api">API JavaScript</span>
+        </a>
+        <a href="/api/webcam-demo" class="doc-card demo-card">
+          <div class="doc-icon">🚀</div>
+          <h3>Démo Webcam</h3>
+          <p>Exemple interactif →</p>
+          <span class="badge-demo">Démo Live</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <h2>💡 Comment utiliser</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>👁️ Vue Code/Aperçu</h3>
+          <p>Chaque exemple est affiché avec le code source à gauche et l'aperçu en direct à droite</p>
+        </div>
+        <div class="info-card">
+          <h3>⇄ Basculer la vue</h3>
+          <p>Utilisez le bouton "Vue horizontale/verticale" pour changer l'orientation de l'affichage</p>
+        </div>
+        <div class="info-card">
+          <h3>🚀 CodePen</h3>
+          <p>Ouvrez chaque exemple dans CodePen pour le modifier et expérimenter</p>
+        </div>
+        <div class="info-card">
+          <h3>📚 Documentation MDN</h3>
+          <p>Accédez à la documentation officielle Mozilla via le bouton en haut de chaque page</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .docs-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .docs-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+  }
+
+  .docs-header h1 {
+    font-size: 2.5rem;
+    color: #667eea;
+    margin-bottom: 1rem;
+  }
+
+  .docs-header p {
+    font-size: 1.2rem;
+    color: #888;
+  }
+
+  .docs-section {
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    color: #667eea;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-desc {
+    font-size: 1.1rem;
+    color: #888;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .badge-optional {
+    background-color: #ffd93d;
+    color: #333;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .api-section {
+    background: linear-gradient(135deg, rgba(255,107,107,0.05) 0%, rgba(102,126,234,0.05) 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid rgba(255,107,107,0.2);
+  }
+
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .doc-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .doc-card:hover {
+    transform: translateY(-5px);
+    border-color: #667eea;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  }
+
+  .api-card {
+    border-color: #ff6b6b;
+  }
+
+  .api-card:hover {
+    border-color: #ff6b6b;
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+  }
+
+  .demo-card {
+    border-color: #28a745;
+  }
+
+  .demo-card:hover {
+    border-color: #28a745;
+    box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+  }
+
+  .badge-api,
+  .badge-demo {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .badge-api {
+    background-color: #ff6b6b;
+    color: white;
+  }
+
+  .badge-demo {
+    background-color: #28a745;
+    color: white;
+  }
+
+  .doc-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .doc-card h3 {
+    color: #667eea;
+    font-family: 'Courier New', monospace;
+    margin: 0.5rem 0;
+  }
+
+  .doc-card p {
+    color: #888;
+    margin: 0.5rem 0 0 0;
+  }
+
+  .info-section {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 2px solid #333;
+  }
+
+  .info-section h2 {
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 2rem;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .info-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+  }
+
+  .info-card h3 {
+    color: #667eea;
+    margin-top: 0;
+  }
+
+  .info-card p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  @media (prefers-color-scheme: light) {
+    .docs-header p {
+      color: #666;
+    }
+
+    .doc-card,
+    .info-card {
+      background: #f9f9f9;
+      border-color: #ddd;
+    }
+
+    .doc-card p {
+      color: #666;
+    }
+
+    .info-card p {
+      color: #333;
+    }
+
+    .info-section {
+      border-top-color: #ddd;
+    }
+  }
+</style>

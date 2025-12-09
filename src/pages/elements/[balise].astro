@@ -1,0 +1,590 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import InteractiveEditor from '../../components/InteractiveEditor.astro';
+import '../../Styles/style.css';
+import elementsData from '../../datas/Json/datas.json';
+import codepenMapping from '../../datas/Json/codepen-mapping.json';
+
+export async function getStaticPaths() {
+  const elements = elementsData.elements || [];
+  return elements.map((element: any) => ({
+    params: { balise: element.balise },
+    props: { element }
+  }));
+}
+
+const { element } = Astro.props;
+const { balise } = Astro.params;
+
+// Classe pour formater les éléments
+class HtmlElement {
+  constructor(data: any) {
+    this.id = data.id;
+    this.balise = data.balise;
+    this.section = data.section;
+    this.description = data.description;
+    this.syntaxeFormated = (data.syntaxe || []).map((syntaxeBrut: any) => ({
+      titre: syntaxeBrut.titre,
+      code: syntaxeBrut.code
+    }));
+    this.attributsFormates = (data.attributs || []).map((attributBrut: any) => ({
+      nom: attributBrut.name,
+      type: attributBrut.type,
+      detail: attributBrut.description,
+      valeursPermises: attributBrut.valeurs || []
+    }));
+  }
+  
+  id: number;
+  balise: string;
+  section: string;
+  description: string;
+  syntaxeFormated: Array<{titre: string, code: string}>;
+  attributsFormates: Array<{nom: string, type: string, detail: string, valeursPermises: string[]}>;
+}
+
+const elementFormate = new HtmlElement(element);
+
+// Lien MDN pour l'élément
+const mdnBaseUrl = 'https://developer.mozilla.org/fr/docs/Web/HTML/Element';
+const mdnUrl = `${mdnBaseUrl}/${balise}`;
+
+// Récupérer les IDs CodePen pour cet élément
+const codepenIds = (codepenMapping as any).codepenIds[balise] || {};
+
+// Fonction pour obtenir l'ID CodePen pour un exemple spécifique
+function getCodePenId(titre: string): string | undefined {
+  // Normaliser le titre pour la correspondance
+  const normalizedTitle = titre.toLowerCase()
+    .replace(/[éèê]/g, 'e')
+    .replace(/[àâ]/g, 'a')
+    .replace(/\s+/g, '_')
+    .replace(/[^a-z0-9_]/g, '');
+  
+  return codepenIds[normalizedTitle];
+}
+
+// Tous les éléments pour la navigation
+const allElements = elementsData.elements || [];
+const currentIndex = allElements.findIndex((el: any) => el.balise === balise);
+const prevElement = currentIndex > 0 ? allElements[currentIndex - 1] : null;
+const nextElement = currentIndex < allElements.length - 1 ? allElements[currentIndex + 1] : null;
+
+// Importer le contenu Markdown si disponible
+let markdownContent = '';
+try {
+  const mdModule = await import(`../../markdown/${balise}.md`);
+  markdownContent = mdModule.compiledContent ? mdModule.compiledContent() : '';
+} catch (e) {
+  // Fichier markdown non trouvé, on continue sans
+  console.log(`Pas de fichier markdown pour ${balise}`);
+}
+---
+
+<Layout title={`<${balise}> - Tutoriel HTML Media`}>
+  <nav class="breadcrumb">
+    <a href="/">← Retour à l'accueil</a>
+  </nav>
+
+  <main class="element-detail">
+    <header class="element-header">
+      <div>
+        <h1>&lt;{elementFormate.balise}&gt;</h1>
+        <span class="element-section-badge">{elementFormate.section}</span>
+      </div>
+      <a href={mdnUrl} target="_blank" rel="noopener noreferrer" class="mdn-link">
+        📚 Documentation MDN →
+      </a>
+    </header>
+
+    <section class="description-section">
+      <h2>Description</h2>
+      <p>{elementFormate.description}</p>
+    </section>
+
+    <!-- Documentation Markdown si disponible -->
+    {markdownContent && (
+      <section class="markdown-section">
+        <h2>📚 Documentation complète</h2>
+        <div class="markdown-content" set:html={markdownContent} />
+      </section>
+    )}
+
+    <!-- Tabs pour Syntaxe et Attributs -->
+    <div class="tabs">
+      <button class="tab-button active" data-tab="syntaxe">Syntaxe</button>
+      <button class="tab-button" data-tab="attributs">Attributs</button>
+    </div>
+
+    <!-- Contenu Syntaxe -->
+    <section class="tab-content active" id="syntaxe">
+      <h2>Syntaxe et Exemples</h2>
+      {elementFormate.syntaxeFormated.map((item: any) => {
+        const penId = getCodePenId(item.titre);
+        return (
+          <InteractiveEditor code={item.code} titre={item.titre} penId={penId} />
+        );
+      })}
+    </section>
+
+    <!-- Contenu Attributs -->
+    <section class="tab-content" id="attributs">
+      <h2>Attributs</h2>
+      {elementFormate.attributsFormates.map((item: any) => (
+        <div class="attribut-block">
+          <h3 class="attribut-name">
+            {item.nom}
+            <span class="attribut-type">({item.type})</span>
+          </h3>
+          <p class="attribut-description">{item.detail}</p>
+          {item.valeursPermises && item.valeursPermises.length > 0 && (
+            <div class="attribut-valeurs">
+              <h4>Valeurs possibles :</h4>
+              <ul>
+                {item.valeursPermises.map((val: string) => (
+                  <li><code>{val}</code></li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      ))}
+    </section>
+
+    <!-- Navigation entre éléments -->
+    <nav class="element-navigation">
+      {prevElement && (
+        <a href={`/elements/${prevElement.balise}`} class="nav-button prev">
+          ← &lt;{prevElement.balise}&gt;
+        </a>
+      )}
+      <a href="/" class="nav-button home">
+        Tous les éléments
+      </a>
+      {nextElement && (
+        <a href={`/elements/${nextElement.balise}`} class="nav-button next">
+          &lt;{nextElement.balise}&gt; →
+        </a>
+      )}
+    </nav>
+  </main>
+</Layout>
+
+<script>
+  // Gestion des tabs
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tabName = button.getAttribute('data-tab');
+        
+        // Retirer la classe active de tous les boutons et contenus
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Ajouter la classe active au bouton cliqué et au contenu correspondant
+        button.classList.add('active');
+        if (tabName) {
+          document.getElementById(tabName)?.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .breadcrumb {
+    padding: 1rem 2rem;
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
+  }
+
+  .breadcrumb a {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .breadcrumb a:hover {
+    color: #764ba2;
+  }
+
+  .element-detail {
+    max-width: calc(100% - 60px);
+    margin: 0 auto;
+    padding: 2rem 30px;
+  }
+
+  .element-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #667eea;
+  }
+
+  .element-header h1 {
+    font-size: 2.5rem;
+    color: #667eea;
+    font-family: 'Courier New', monospace;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .element-section-badge {
+    background: #2a2a2a;
+    color: #888;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
+  }
+
+  .mdn-link {
+    background: #667eea;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+
+  .mdn-link:hover {
+    background: #764ba2;
+    transform: translateY(-2px);
+  }
+
+  .description-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #1a1a1a;
+    border-left: 4px solid #667eea;
+    border-radius: 0.5rem;
+  }
+
+  .description-section h2 {
+    margin-top: 0;
+    color: #667eea;
+  }
+
+  .markdown-section {
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: #1a1a1a;
+    border-radius: 0.5rem;
+    border: 1px solid #333;
+  }
+
+  .markdown-section h2 {
+    margin-top: 0;
+    color: #667eea;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+  }
+
+  .markdown-content {
+    color: #ccc;
+    line-height: 1.8;
+  }
+
+  .markdown-content h1,
+  .markdown-content h2,
+  .markdown-content h3,
+  .markdown-content h4 {
+    color: #667eea;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .markdown-content h1 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+  }
+
+  .markdown-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .markdown-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .markdown-content code {
+    background: #0d0d0d;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.3rem;
+    color: #50fa7b;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+  }
+
+  .markdown-content pre {
+    background: #0d0d0d;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    border: 1px solid #333;
+  }
+
+  .markdown-content pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  .markdown-content a {
+    color: #667eea;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .markdown-content a:hover {
+    border-bottom-color: #667eea;
+  }
+
+  .markdown-content ul,
+  .markdown-content ol {
+    padding-left: 2rem;
+    margin: 1rem 0;
+  }
+
+  .markdown-content li {
+    margin: 0.5rem 0;
+  }
+
+  .markdown-content blockquote {
+    border-left: 4px solid #667eea;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: #888;
+    font-style: italic;
+  }
+
+  .markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+
+  .markdown-content th,
+  .markdown-content td {
+    padding: 0.75rem;
+    border: 1px solid #333;
+    text-align: left;
+  }
+
+  .markdown-content th {
+    background: #0d0d0d;
+    color: #667eea;
+    font-weight: 600;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #333;
+  }
+
+  .tab-button {
+    background: transparent;
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    color: #888;
+    font-size: 1rem;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+  }
+
+  .tab-button:hover {
+    color: #667eea;
+  }
+
+  .tab-button.active {
+    color: #667eea;
+    border-bottom-color: #667eea;
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  .attribut-block {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #1a1a1a;
+    border-radius: 0.5rem;
+    border: 1px solid #333;
+  }
+
+  .attribut-block h3 {
+    color: #667eea;
+    margin-top: 0;
+  }
+
+  .attribut-name {
+    font-family: 'Courier New', monospace;
+  }
+
+  .attribut-type {
+    color: #888;
+    font-size: 0.9rem;
+    font-weight: normal;
+  }
+
+  .attribut-description {
+    color: #ccc;
+    line-height: 1.6;
+  }
+
+  .attribut-valeurs {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #0d0d0d;
+    border-radius: 0.5rem;
+  }
+
+  .attribut-valeurs h4 {
+    color: #667eea;
+    margin-top: 0;
+  }
+
+  .attribut-valeurs ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .attribut-valeurs li {
+    padding: 0.5rem;
+    margin: 0.3rem 0;
+    background: #1a1a1a;
+    border-radius: 0.3rem;
+  }
+
+  .attribut-valeurs code {
+    color: #50fa7b;
+  }
+
+  .element-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #333;
+  }
+
+  .nav-button {
+    padding: 1rem 1.5rem;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: #667eea;
+    font-weight: 500;
+    transition: all 0.3s;
+    flex: 1;
+    text-align: center;
+  }
+
+  .nav-button:hover {
+    background: #2a2a2a;
+    border-color: #667eea;
+    transform: translateY(-2px);
+  }
+
+  .nav-button.home {
+    flex: 0.5;
+  }
+
+  @media (prefers-color-scheme: light) {
+    .breadcrumb {
+      background: #f9f9f9;
+      border-bottom-color: #ddd;
+    }
+
+    .element-section-badge {
+      background: #e9e9e9;
+      color: #666;
+    }
+
+    .description-section,
+    .attribut-block,
+    .markdown-section {
+      background: #f9f9f9;
+      border-color: #ddd;
+    }
+
+    .markdown-content {
+      color: #333;
+    }
+
+    .markdown-content code {
+      background: #f0f0f0;
+      color: #2ecc71;
+    }
+
+    .markdown-content pre {
+      background: #f5f5f5;
+      border-color: #ddd;
+    }
+
+    .markdown-content th {
+      background: #f0f0f0;
+    }
+
+    .markdown-content th,
+    .markdown-content td {
+      border-color: #ddd;
+    }
+
+    .markdown-content blockquote {
+      color: #666;
+    }
+
+    .attribut-description {
+      color: #333;
+    }
+
+    .attribut-valeurs {
+      background: #f0f0f0;
+    }
+
+    .attribut-valeurs li {
+      background: white;
+    }
+
+    .nav-button {
+      background: #f9f9f9;
+      border-color: #ddd;
+    }
+
+    .nav-button:hover {
+      background: white;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .element-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .element-navigation {
+      flex-direction: column;
+    }
+
+    .nav-button.home {
+      flex: 1;
+    }
+  }
+</style>

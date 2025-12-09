@@ -1,0 +1,499 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../Styles/style.css';
+---
+
+<Layout title="Démo Webcam - API getUserMedia()">
+    <main class="demo-container">
+        <header class="demo-header">
+            <h1>🎥 Démonstration : Accès à la Webcam</h1>
+            <p class="subtitle">Exemple pratique de l'API MediaDevices.getUserMedia()</p>
+            <div class="alert alert-warning">
+                ⚠️ Cette fonctionnalité nécessite HTTPS ou localhost et votre autorisation.
+            </div>
+        </header>
+
+        <section class="webcam-section">
+            <div class="webcam-container">
+                <video id="webcam" autoplay playsinline muted></video>
+                <canvas id="photo-canvas" style="display: none;"></canvas>
+            </div>
+
+            <div class="controls">
+                <button id="btn-start" class="btn btn-success">
+                    <span>📹</span> Démarrer la caméra
+                </button>
+                <button id="btn-stop" class="btn btn-danger" disabled>
+                    <span>⏹️</span> Arrêter
+                </button>
+                <button id="btn-capture" class="btn btn-primary" disabled>
+                    <span>📸</span> Capturer une photo
+                </button>
+            </div>
+
+            <div id="status" class="status-message"></div>
+        </section>
+
+        <section class="photos-section">
+            <h2>📷 Photos capturées</h2>
+            <div id="photos-gallery" class="photos-gallery"></div>
+        </section>
+
+        <section class="info-section">
+            <h2>ℹ️ À propos de cette démo</h2>
+            <ul>
+                <li>Utilise l'API <code>navigator.mediaDevices.getUserMedia()</code></li>
+                <li>Affiche le flux vidéo en temps réel dans un élément <code>&lt;video&gt;</code></li>
+                <li>Capture des images via un élément <code>&lt;canvas&gt;</code></li>
+                <li>Permet de télécharger les photos capturées</li>
+            </ul>
+            
+            <div class="code-note">
+                <strong>💡 Note technique :</strong> Le flux vidéo reste entièrement dans votre navigateur.
+                Aucune donnée n'est envoyée sur internet.
+            </div>
+        </section>
+
+        <nav class="demo-nav">
+            <a href="/api/getUserMedia" class="btn btn-link">📖 Voir la documentation complète</a>
+            <a href="/" class="btn btn-link">🏠 Retour à l'accueil</a>
+        </nav>
+    </main>
+</Layout>
+
+<script>
+    const video = document.getElementById('webcam') as HTMLVideoElement;
+    const photoCanvas = document.getElementById('photo-canvas') as HTMLCanvasElement;
+    const btnStart = document.getElementById('btn-start') as HTMLButtonElement;
+    const btnStop = document.getElementById('btn-stop') as HTMLButtonElement;
+    const btnCapture = document.getElementById('btn-capture') as HTMLButtonElement;
+    const statusDiv = document.getElementById('status') as HTMLDivElement;
+    const photosGallery = document.getElementById('photos-gallery') as HTMLDivElement;
+    
+    let stream: MediaStream | null = null;
+    let photoCount = 0;
+
+    function updateStatus(message: string, type: 'info' | 'success' | 'error' = 'info') {
+        statusDiv.textContent = message;
+        statusDiv.className = `status-message status-${type}`;
+        setTimeout(() => {
+            statusDiv.className = 'status-message';
+        }, 3000);
+    }
+
+    // Vérifier le support de l'API
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        updateStatus('❌ Votre navigateur ne supporte pas getUserMedia', 'error');
+        btnStart.disabled = true;
+    }
+
+    // Démarrer la webcam
+    btnStart.addEventListener('click', async () => {
+        try {
+            updateStatus('⏳ Demande d\'accès à la caméra...', 'info');
+            
+            stream = await navigator.mediaDevices.getUserMedia({ 
+                video: {
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 }
+                }
+            });
+            
+            video.srcObject = stream;
+            
+            btnStart.disabled = true;
+            btnStop.disabled = false;
+            btnCapture.disabled = false;
+            
+            updateStatus('✅ Caméra activée avec succès !', 'success');
+            
+        } catch (error: any) {
+            console.error('Erreur:', error);
+            let errorMessage = '❌ Erreur: ';
+            
+            switch(error.name) {
+                case 'NotAllowedError':
+                    errorMessage += 'Permission refusée. Autorisez l\'accès à la caméra.';
+                    break;
+                case 'NotFoundError':
+                    errorMessage += 'Aucune caméra trouvée.';
+                    break;
+                case 'NotReadableError':
+                    errorMessage += 'Caméra déjà utilisée par une autre application.';
+                    break;
+                case 'SecurityError':
+                    errorMessage += 'Erreur de sécurité (HTTPS requis en production).';
+                    break;
+                default:
+                    errorMessage += error.message || 'Erreur inconnue';
+            }
+            
+            updateStatus(errorMessage, 'error');
+        }
+    });
+
+    // Arrêter la webcam
+    btnStop.addEventListener('click', () => {
+        if (stream) {
+            stream.getTracks().forEach(track => {
+                track.stop();
+                console.log(`Piste ${track.kind} arrêtée`);
+            });
+            
+            video.srcObject = null;
+            stream = null;
+            
+            btnStart.disabled = false;
+            btnStop.disabled = true;
+            btnCapture.disabled = true;
+            
+            updateStatus('🛑 Caméra arrêtée', 'info');
+        }
+    });
+
+    // Capturer une photo
+    btnCapture.addEventListener('click', () => {
+        if (!stream) return;
+        
+        // Configurer le canvas aux dimensions de la vidéo
+        photoCanvas.width = video.videoWidth;
+        photoCanvas.height = video.videoHeight;
+        
+        // Dessiner l'image actuelle
+        const ctx = photoCanvas.getContext('2d');
+        if (!ctx) return;
+        
+        ctx.drawImage(video, 0, 0);
+        
+        // Convertir en image
+        const imageUrl = photoCanvas.toDataURL('image/png');
+        photoCount++;
+        
+        // Créer l'élément de galerie
+        const photoItem = document.createElement('div');
+        photoItem.className = 'photo-item';
+        
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = `Photo ${photoCount}`;
+        
+        const downloadLink = document.createElement('a');
+        downloadLink.href = imageUrl;
+        downloadLink.download = `webcam_photo_${Date.now()}.png`;
+        downloadLink.className = 'btn btn-download';
+        downloadLink.innerHTML = '⬇️ Télécharger';
+        
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn btn-delete';
+        deleteBtn.innerHTML = '🗑️ Supprimer';
+        deleteBtn.onclick = () => photoItem.remove();
+        
+        const buttonGroup = document.createElement('div');
+        buttonGroup.className = 'photo-actions';
+        buttonGroup.appendChild(downloadLink);
+        buttonGroup.appendChild(deleteBtn);
+        
+        photoItem.appendChild(img);
+        photoItem.appendChild(buttonGroup);
+        
+        photosGallery.prepend(photoItem);
+        
+        updateStatus(`📸 Photo ${photoCount} capturée !`, 'success');
+    });
+
+    // Nettoyer lors de la fermeture de la page
+    window.addEventListener('beforeunload', () => {
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+        }
+    });
+</script>
+
+<style>
+    .demo-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .demo-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        color: #7f8c8d;
+        margin-bottom: 1rem;
+    }
+
+    .alert {
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem auto;
+        max-width: 600px;
+    }
+
+    .alert-warning {
+        background-color: #fff3cd;
+        border: 1px solid #ffc107;
+        color: #856404;
+    }
+
+    .webcam-section {
+        margin-bottom: 3rem;
+    }
+
+    .webcam-container {
+        max-width: 800px;
+        margin: 0 auto 1.5rem;
+        background: #000;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    #webcam {
+        width: 100%;
+        height: auto;
+        display: block;
+        min-height: 300px;
+        object-fit: cover;
+    }
+
+    .controls {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .btn-success:hover:not(:disabled) {
+        background-color: #218838;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .btn-danger:hover:not(:disabled) {
+        background-color: #c82333;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+        background-color: #0056b3;
+    }
+
+    .status-message {
+        text-align: center;
+        padding: 1rem;
+        border-radius: 8px;
+        font-weight: 600;
+        min-height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .status-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .status-error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .status-info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+    }
+
+    .photos-section {
+        margin-bottom: 3rem;
+    }
+
+    .photos-section h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #2c3e50;
+    }
+
+    .photos-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .photo-item {
+        background: white;
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .photo-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    .photo-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .photo-actions {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    .btn-download,
+    .btn-delete {
+        flex: 1;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .btn-download {
+        background-color: #17a2b8;
+        color: white;
+    }
+
+    .btn-download:hover {
+        background-color: #138496;
+    }
+
+    .btn-delete {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn-delete:hover {
+        background-color: #5a6268;
+    }
+
+    .info-section {
+        background: #f8f9fa;
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+    }
+
+    .info-section h2 {
+        color: #2c3e50;
+        margin-bottom: 1rem;
+    }
+
+    .info-section ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .info-section li {
+        padding: 0.5rem 0;
+        padding-left: 1.5rem;
+        position: relative;
+    }
+
+    .info-section li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #28a745;
+        font-weight: bold;
+    }
+
+    .code-note {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background: #e7f3ff;
+        border-left: 4px solid #007bff;
+        border-radius: 4px;
+    }
+
+    .demo-nav {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn-link {
+        background-color: #6c757d;
+        color: white;
+        text-decoration: none;
+    }
+
+    .btn-link:hover {
+        background-color: #5a6268;
+    }
+
+    @media (max-width: 768px) {
+        .demo-header h1 {
+            font-size: 2rem;
+        }
+
+        .photos-gallery {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+
+        .controls {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+</style>

@@ -1,4 +1,123 @@
 {
+  "definition": [
+    {
+      "id": "multimediaRoleInModernWebSite",
+      "titre": "Le rôle des médias dans le web de nos jours.",
+      "definitions": {
+        "larousse": {
+          "type": "Média (Nom masculin)",
+          "definition": "Procédé permettant la distribution, la diffusion ou la communication d'œuvres, de documents, ou de messages sonores ou audiovisuels (presse, cinéma, affiche, radiodiffusion, télédiffusion, vidéographie, télédistribution, télématique, télécommunication).",
+          "notes": "On trouve aussi médium ou medium au singulier, et media, nom masculin invariable."
+        },
+        "gemini": {
+          "type": "Média (Nom masculin)",
+          "definition": "Le terme média désigne tout moyen de distribution, de diffusion ou de communication (interpersonnelle, de masse ou de groupe) d'œuvres, de documents, de messages écrits, visuels, sonores ou audiovisuels. En général, il fait référence aux moyens de diffusion massive de l'information.",
+          "exemples": [
+            "La presse (journaux, magazines)",
+            "La radio",
+            "La télévision",
+            "Le cinéma",
+            "Internet (sites web, réseaux sociaux, etc.)"
+          ],
+          "etymologie": "Le mot vient du latin *media*, pluriel de *medium* (milieu, intermédiaire)."
+        },
+        "html5": {
+          "type": "Média dans le contexte HTML",
+          "definition": "Tout contenu non textuel qui sert de support d'information au sein d'une page web.",
+          "exemples": [
+            "Images et Photos (balises `<picture>`, `<img>`, ou formats vectoriels comme le `<svg>`)",
+            "Vidéos (balise `<video>`)",
+            "Audio (balise `<audio>`)",
+            "Contenu interactif/multimédia (Animations, graphiques dynamiques, souvent intégrés via `<iframe>` ou autres techniques)"
+          ],
+          "resume": "En HTML, les médias sont les vecteurs d'information et de contenu autres que le texte pur."
+        }
+      }
+    },
+    {
+      "id": "BalisesAndElements",
+      "titre": "Balises et éléments Média HTML5",
+      "description": "HTML5 a introduit plusieurs balises et éléments spécifiques pour la gestion des médias, facilitant l'intégration de contenu audio et vidéo dans les pages web.",
+      "elements": [
+          {
+            "balise": "audio",
+            "type": "Audio",
+            "description": "Utilisée pour intégrer du contenu audio. Prend en charge MP3, WAV, Ogg.",
+            "exemple": "<audio controls><source src=\"audio.mp3\" type=\"audio/mpeg\"><source src=\"audio.ogg\" type=\"audio/ogg\">Votre navigateur ne prend pas en charge la balise audio.</audio>"
+          },
+          {
+            "balise": "video",
+            "type": "Vidéo",
+            "description": "Utilisée pour intégrer du contenu vidéo. Prend en charge MP4, WebM, Ogg.",
+            "exemple": "<video controls><source src=\"video.mp4\" type=\"video/mp4\"><source src=\"video.webm\" type=\"video/webm\">Votre navigateur ne prend pas en charge la balise vidéo.</video>"
+          },
+          {
+            "balise": "controls (attribut)",
+            "type": "Contrôle",
+            "description": "Ajoute les boutons de lecture, de pause et de volume aux balises `<audio>` et `<video>`."
+          },
+          {
+            "balise": "track",
+            "type": "Sous-titres/Descriptions",
+            "description": "Utilisée à l'intérieur de `<video>` pour ajouter des sous-titres ou des descriptions audio.",
+            "exemple": "<video controls>...<track src=\"subtitles_en.vtt\" kind=\"subtitles\" srclang=\"en\" label=\"English\">...</video>"
+          },
+          {
+            "balise": "source",
+            "type": "Source de Média",
+            "description": "Spécifie plusieurs sources de média pour `<audio>` et `<video>`. Le navigateur choisit celle qu'il peut lire.",
+            "exemple": "<video controls><source src=\"/src/assets/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />Votre navigateur ne prend pas en charge la balise vidéo.</video>"
+          },
+          {
+            "balise": "embed",
+            "type": "Média Externe",
+            "description": "Permet d'intégrer des médias externes (ex: fichiers Flash ou applications Java). Moins courant en HTML5.",
+            "exemple": "<embed type=\"video/mp4\" src=\"/src/assets/video/14733700_3840_2160_60fps.mp4\" width=\"250\" height=\"200\" />"
+          },
+          {
+            "balise": "object",
+            "type": "Média/Contenu",
+            "description": "Plus polyvalente que `<embed>`, peut intégrer différents types de contenu, y compris des médias.",
+            "exemple": "<object type=\"video/mp4\" data=\"/src/assets/video/14733700_3840_2160_60fps.mp4\" width=\"250\" height=\"200\"></object>"
+          },
+          {
+            "balise": "picture",
+            "type": "Images Adaptatives",
+            "description": "Utilisée pour fournir des images adaptatives en spécifiant différentes sources selon les conditions (ex: résolution de l'écran).",
+            "exemple": "<picture><source srcset=\"...\" media=\"(orientation: portrait)\" /><img src=\"...\" alt=\"\" /></picture>"
+          },
+          {
+            "balise": "source (dans <picture>)",
+            "type": "Source d'Image",
+            "description": "Définit différentes sources d'images pour la balise `<picture>`, pour une meilleure adaptation aux différents appareils et résolutions."
+          },
+          {
+            "balise": "img",
+            "type": "Image",
+            "description": "Essentielle pour afficher des images dans le contexte multimédia.",
+            "exemple": "<img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Paysage naturel\" />"
+          },
+          {
+            "balise": "canvas",
+            "type": "Graphiques Dynamiques",
+            "description": "Permet de dessiner des graphiques dynamiques via JavaScript, souvent utilisée pour des animations ou des visualisations interactives.",
+            "exemple": "<canvas id=\"myCanvas\" width=\"200\" height=\"100\"></canvas>"
+          },
+          {
+            "balise": "svg",
+            "type": "Graphiques Vectoriels",
+            "description": "Utilisée pour intégrer des graphiques vectoriels scalables, offrant une qualité d'image optimale à toutes les résolutions.",
+            "exemple": "<svg width=\"100\" height=\"100\"><circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"red\" /></svg>"
+          },
+          {
+            "balise": "figureFigCaption",
+            "type": "Sémantique de Média",
+            "description": "Regroupe des médias (images, vidéos, etc.) avec leurs légendes, améliorant ainsi la sémantique du contenu.",
+            "exemple": "<figure><img src=\"image.jpg\" alt=\"Description de l'image\"><figcaption>Légende de l'image</figcaption></figure>"
+          }
+        ]
+    }
+  ],
   "elements": [
     {
       "id": 1,
@@ -8,7 +127,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<figure>\n<figcaption>Listen to the T.rex:</figcaption>\n<audio controls src=\"/shared-assets/audio/t-rex-roar.mp3\"></audio>\n<a href=\"/shared-assets/audio/t-rex-roar.mp3\"> Download audio </a>\n</figure>"
+          "code": "<figure>\n<figcaption>Écoutez Bonbon :</figcaption>\n<audio controls src=\"/src/assets/audio/Bonbon/Bonbon.mp3\"></audio>\n<a href=\"/src/assets/audio/Bonbon/Bonbon.mp3\">Télécharger l'audio</a>\n</figure>"
         }
       ],
       "attributs": [
@@ -41,7 +160,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<video controls width=\"250\">\n    <source src=\"/shared-assets/videos/flower.webm\" type=\"video/webm\" />\n    <source src=\"/shared-assets/videos/flower.mp4\" type=\"video/mp4\" />\n    Télécharger la vidéo\n    <a href=\"/shared-assets/videos/flower.webm\">WEBM</a>\n    ou\n    <a href=\"/shared-assets/videos/flower.mp4\">MP4</a>\n    .\n</video>"
+          "code": "<video controls width=\"640\" height=\"360\">\n    <source src=\"/src/assets/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n    Télécharger la vidéo\n    <a href=\"/src/assets/video/14733700_3840_2160_60fps.mp4\">MP4</a>\n</video>"
         }
       ],
       "attributs": [
@@ -84,11 +203,11 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<img src=\"/shared-assets/images/sunset.jpg\"\n         alt=\"Coucher de soleil sur l'océan\">"
+          "code": "<img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\"\n         alt=\"Image iStock 1985150440\">"
         },
         {
           "titre": "Exemple avec attributs supplémentaires",
-          "code": "<img src=\"/shared-assets/images/landscape.jpg\"\n         alt=\"Paysage de montagne enneigée\"\n         width=\"800\"\n         height=\"600\"\n         loading=\"lazy\">"
+          "code": "<img src=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\"\n         alt=\"Image iStock 2098773559\"\n         width=\"800\"\n         height=\"600\"\n         loading=\"lazy\">"
         }
       ],
       "attributs": [
@@ -131,11 +250,11 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<picture>\n        <source srcset=\"/shared-assets/images/photo.avif\" type=\"image/avif\">\n        <source srcset=\"/shared-assets/images/photo.webp\" type=\"image/webp\">\n        <img src=\"/shared-assets/images/photo.jpg\" alt=\"Belle photo de paysage\">\n    </picture>"
+          "code": "<picture>\n        <source srcset=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\" type=\"image/jpeg\">\n        <img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Belle photo de paysage\">\n    </picture>"
         },
         {
           "titre": "Exemple avec media queries",
-          "code": "<picture>\n        <source media=\"(min-width: 1200px)\" srcset=\"large.jpg\">\n        <source media=\"(min-width: 768px)\" srcset=\"medium.jpg\">\n        <img src=\"small.jpg\" alt=\"Image responsive\">\n    </picture>"
+          "code": "<picture>\n        <source media=\"(min-width: 1200px)\" srcset=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\">\n        <source media=\"(min-width: 768px)\" srcset=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\">\n        <img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Image responsive\">\n    </picture>"
         }
       ],
       "attributs": [
@@ -169,15 +288,15 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple avec <video>",
-          "code": "<video controls width=\"250\">\n        <source src=\"/shared-assets/videos/flower.webm\" type=\"video/webm\" />\n        <source src=\"/shared-assets/videos/flower.mp4\" type=\"video/mp4\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
+          "code": "<video controls width=\"640\" height=\"360\">\n        <source src=\"/src/assets/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
         },
         {
           "titre": "Exemple de syntaxe avec <audio>",
-          "code": "<audio controls>\n        <source src=\"/shared-assets/audio/music.opus\" type=\"audio/opus\" />\n        <source src=\"/shared-assets/audio/music.ogg\" type=\"audio/ogg\" />\n        <source src=\"/shared-assets/audio/music.mp3\" type=\"audio/mpeg\" />\n        Votre navigateur ne prend pas en charge l'élément audio.\n    </audio>"
+          "code": "<audio controls>\n        <source src=\"/src/assets/audio/Bonbon/Bonbon.mp3\" type=\"audio/mpeg\" />\n        Votre navigateur ne prend pas en charge l'élément audio.\n    </audio>"
         },
         {
           "titre": "Exemple de syntaxe avec <picture>",
-          "code": "<picture>\n        <source srcset=\"/shared-assets/images/photo.avif\" type=\"image/avif\" />\n        <source srcset=\"/shared-assets/images/photo.webp\" type=\"image/webp\" />\n        <img src=\"/shared-assets/...\" alt=\"Image par défaut\" />\n    </picture>"
+      "code": "<picture>\n        <source srcset=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\" type=\"image/jpeg\" />\n        <source srcset=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" type=\"image/jpeg\" />\n        <img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Image par défaut\" />\n    </picture>"
         }
       ],
       "attributs": [
@@ -216,7 +335,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<video controls width=\"250\">\n        <source src=\"/shared-assets/videos/friday.mp4\" type=\"video/mp4\" />\n        <track default kind=\"captions\" srclang=\"fr\" src=\"/shared-assets/tracks/friday-fr.vtt\" />\n        <track kind=\"subtitles\" srclang=\"en\" src=\"/shared-assets/tracks/friday-en.vtt\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
+          "code": "<video controls width=\"250\">\n        <source src=\"/src/assets/video/14542855_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n       <track default kind=\"captions\" srclang=\"fr\" src=\"/shared-assets/tracks/friday-fr.vtt\" />\n        <track kind=\"subtitles\" srclang=\"en\" src=\"/shared-assets/tracks/friday-en.vtt\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
         }
       ],
       "attributs": [
@@ -317,21 +436,21 @@
     },
     {
       "id": 9,
-      "balise": "figure/figcaption",
+      "balise": "figureFigCaption",
       "section": "Sémantique",
       "description": "Les éléments HTML ```<figure>``` et ```<figcaption>``` sont utilisés ensemble pour regrouper du contenu multimédia (images, vidéos, etc.) avec une légende associée.",
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<figure>\n        <img src=\"/shared-assets/images/landscape.jpg\" alt=\"Paysage de montagne\">\n        <figcaption>Vue panoramique des Alpes au lever du soleil</figcaption>\n    </figure>"
+          "code": "<figure>\n        <img src=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\" alt=\"Paysage de montagne\">\n        <figcaption>Vue panoramique des Alpes au lever du soleil</figcaption>\n    </figure>"
         },
         {
           "titre": "Exemple avec plusieurs images",
-          "code": "<figure>\n        <img src=\"photo1.jpg\" alt=\"Photo 1\">\n        <img src=\"photo2.jpg\" alt=\"Photo 2\">\n        <img src=\"photo3.jpg\" alt=\"Photo 3\">\n        <figcaption>Collection de photos de voyage - Été 2024</figcaption>\n    </figure>"
+          "code": "<figure>\n        <img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Photo 1\">\n        <img src=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\" alt=\"Photo 2\">\n        <figcaption>Collection de photos de paysage</figcaption>\n    </figure>"
         },
         {
-          "titre": "Exemple avec un extrait de code",
-          "code": "<figure>\n        <figcaption>Exemple de fonction JavaScript</figcaption>\n        <pre><code>\n            function calculateArea(r) {\n                return Math.PI * r * r;\n            }\n        </code></pre>\n    </figure>"
+          "titre": "Exemple avec une vidéo",
+          "code": "<figure>\n        <video controls width=\"640\" height=\"360\">\n            <source src=\"/src/assets/video/14733700_3840_2160_60fps.mp4\" type=\"video/mp4\" />\n        </video>\n        <figcaption>Vidéo de démonstration - Paysage en mouvement</figcaption>\n    </figure>"
         }
       ],
       "attributs": [
@@ -350,15 +469,15 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple avec une vidéo",
-          "code": "<object data=\"/shared-assets/videos/flower.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/shared-assets/videos/flower.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
+          "code": "<object data=\"/src/assets/video/14733700_3840_2160_60fps.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/src/assets/video/14733700_3840_2160_60fps.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
         },
         {
-          "titre": "Exemple avec un PDF",
-          "code": "<object data=\"/documents/guide.pdf\"\n            type=\"application/pdf\"\n            width=\"100%\"\n            height=\"600\">\n        <p>Impossible d'afficher le PDF.\n           <a href=\"/documents/guide.pdf\">Télécharger le document</a>\n        </p>\n    </object>"
+          "titre": "Exemple avec une deuxième vidéo",
+          "code": "<object data=\"/src/assets/video/14542855_3840_2160_60fps.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/src/assets/video/14542855_3840_2160_60fps.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
         },
         {
-          "titre": "Exemple avec une image SVG",
-          "code": "<object data=\"/images/diagram.svg\"\n            type=\"image/svg+xml\"\n            width=\"500\"\n            height=\"400\">\n        <img src=\"/images/diagram-fallback.png\" alt=\"Diagramme\">\n    </object>"
+          "titre": "Exemple avec une image",
+          "code": "<object data=\"/src/assets/img/istockphoto-2098773559-1024x1024.jpg\"\n            type=\"image/jpeg\"\n            width=\"500\"\n            height=\"400\">\n        <img src=\"/src/assets/img/istockphoto-1985150440-1024x1024.jpg\" alt=\"Image de secours\">\n    </object>"
         }
       ],
       "attributs": [
@@ -386,12 +505,12 @@
       "description": "L'élément HTML ```<embed>``` intègre du contenu externe (souvent un plugin). Il est déconseillé et n'a pas de balise de fermeture.",
       "syntaxe": [
         {
-          "titre": "Exemple de syntaxe simple",
-          "code": "<embed type=\"video/mp4\"\n           src=\"/shared-assets/videos/flower.mp4\"\n           width=\"640\"\n           height=\"480\">"
+          "titre": "Exemple de syntaxe simple avec une vidéo",
+          "code": "<embed type=\"video/mp4\"\n           src=\"/src/assets/video/14733700_3840_2160_60fps.mp4\"\n           width=\"640\"\n           height=\"480\">"
         },
         {
-          "titre": "Exemple avec un PDF",
-          "code": "<embed type=\"application/pdf\"\n           src=\"/documents/manuel.pdf\"\n           width=\"800\"\n           height=\"600\">"
+          "titre": "Exemple avec une deuxième vidéo",
+          "code": "<embed type=\"video/mp4\"\n           src=\"/src/assets/video/14542855_3840_2160_60fps.mp4\"\n           width=\"640\"\n           height=\"480\">"
         }
       ],
       "attributs": [
@@ -404,58 +523,6 @@
           "name": "type",
           "type": "MIME",
           "description": "Le type MIME à utiliser pour sélectionner le plugin à instancier."
-        }
-      ]
-    },
-    {
-      "id": 12,
-      "balise": "BalisesAndElements_Index",
-      "section": "Index général",
-      "description": "Synthèse des principales balises média HTML5.",
-      "balises_listées": [
-        {
-          "balise": "audio",
-          "rôle": "Contenu audio"
-        },
-        {
-          "balise": "video",
-          "rôle": "Contenu vidéo"
-        },
-        {
-          "balise": "track",
-          "rôle": "Sous-titres/pistes textuelles"
-        },
-        {
-          "balise": "source",
-          "rôle": "Sources multiples pour audio/video/picture"
-        },
-        {
-          "balise": "embed",
-          "rôle": "Médias externes (déconseillé)"
-        },
-        {
-          "balise": "object",
-          "rôle": "Médias complexes/documents"
-        },
-        {
-          "balise": "picture",
-          "rôle": "Images responsives/Art direction"
-        },
-        {
-          "balise": "img",
-          "rôle": "Image standard"
-        },
-        {
-          "balise": "canvas",
-          "rôle": "Graphiques dynamiques JavaScript"
-        },
-        {
-          "balise": "svg",
-          "rôle": "Graphiques vectoriels"
-        },
-        {
-          "balise": "figure/figcaption",
-          "rôle": "Regroupement média + légende"
         }
       ]
     }

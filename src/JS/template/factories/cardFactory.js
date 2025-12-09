@@ -1,5 +1,5 @@
 class CardFactory{
-    constructor(dataElement, vueType) {
+    constructor(dataElement) {
         this.element = dataElement; // L'objet de donnée complet
     }
     createCard() {
