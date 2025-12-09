@@ -1,0 +1,584 @@
+---
+interface Props {
+  code: string;
+  titre: string;
+  penId?: string;
+}
+
+const { code, titre, penId } = Astro.props;
+const editorId = `editor-${Math.random().toString(36).substring(7)}`;
+const previewId = `preview-${Math.random().toString(36).substring(7)}`;
+---
+
+<div class="interactive-editor">
+  <h4 class="editor-title">{titre}</h4>
+  
+  <!-- Éditeur Monaco interactif (toujours affiché) -->
+  <div class="editor-container">
+    <!-- Zone d'édition -->
+    <div class="editor-panel">
+      <div class="panel-header">
+        <span class="panel-icon">✏️</span>
+        <span class="panel-title">Éditeur de code</span>
+        <button class="reset-button" data-editor-id={editorId}>
+          <span class="icon">↺</span>
+          <span>Réinitialiser</span>
+        </button>
+      </div>
+      <div id={editorId} class="monaco-editor"></div>
+    </div>
+
+    <!-- Zone d'aperçu -->
+    <div class="preview-panel">
+      <div class="panel-header">
+        <span class="panel-icon">👁️</span>
+        <span class="panel-title">Aperçu en direct</span>
+      </div>
+      <div class="preview-content">
+        <iframe
+          id={previewId}
+          title={`Aperçu: ${titre}`}
+          class="preview-iframe"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  {penId && (
+    <!-- CodePen Embed en bonus -->
+    <div class="codepen-section">
+      <h5 class="codepen-section-title">
+        <span class="icon">🚀</span>
+        <span>Tester aussi sur CodePen</span>
+      </h5>
+      <div class="codepen-container">
+        <p 
+          class="codepen" 
+          data-height="500" 
+          data-default-tab="html,result" 
+          data-slug-hash={penId}
+          data-user="laurent-Boyer"
+          data-editable="true"
+        >
+          <span>See the Pen <a href={`https://codepen.io/laurent-Boyer/pen/${penId}`}>
+          {titre}</a> by Laurent Boyer (<a href="https://codepen.io/laurent-Boyer">@laurent-Boyer</a>)
+          on <a href="https://codepen.io">CodePen</a>.</span>
+        </p>
+      </div>
+    </div>
+  )}
+
+  <!-- Code source pliable -->
+  <details class="code-source-section">
+    <summary>
+      <span class="icon">📄</span>
+      <span>Voir le code source original</span>
+    </summary>
+    <div class="code-source-content">
+      <pre><code>{code}</code></pre>
+    </div>
+  </details>
+
+  <!-- Actions -->
+  <div class="editor-actions">
+    <button class="action-button toggle-view" data-container-id={editorId}>
+      <span class="icon">⇄</span>
+      <span>Vue horizontale</span>
+    </button>
+    {penId && (
+      <a 
+        href={`https://codepen.io/laurent-Boyer/pen/${penId}`}
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="action-button codepen-link"
+      >
+        <span class="icon">🚀</span>
+        <span>Ouvrir sur CodePen</span>
+      </a>
+    )}
+  </div>
+</div>
+
+<script is:inline define:vars={{ editorId: editorId, previewId: previewId, code }}>
+  {
+    // Attendre que Monaco soit chargé
+    function initEditor() {
+      if (typeof monaco === 'undefined') {
+        setTimeout(initEditor, 100);
+        return;
+      }
+
+      // @ts-ignore
+      const editorElement = document.getElementById(editorId);
+      if (!editorElement) return;
+
+      // Créer l'éditeur Monaco
+      const editor = monaco.editor.create(editorElement, {
+        value: code,
+        language: 'html',
+        theme: 'vs-dark',
+        automaticLayout: true,
+        minimap: { enabled: false },
+        fontSize: 14,
+        lineNumbers: 'on',
+        roundedSelection: false,
+        scrollBeyondLastLine: false,
+        wordWrap: 'on',
+        formatOnPaste: true,
+        formatOnType: true
+      });
+
+      // Fonction de mise à jour de l'aperçu
+      function updatePreview() {
+        // @ts-ignore
+        const iframe = document.getElementById(previewId);
+        if (!iframe) return;
+
+        const currentCode = editor.getValue();
+        const htmlContent = `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    padding: 20px;
+    background: white;
+    margin: 0;
+    color: #333;
+  }
+  audio, video {
+    max-width: 100%;
+    margin: 10px 0;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  figure {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f5f5f5;
+    border-radius: 0.5rem;
+  }
+  figcaption {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #666;
+  }
+  canvas {
+    border: 1px solid #ddd;
+  }
+  svg {
+    max-width: 100%;
+  }
+</style>
+</head>
+<body>
+${currentCode}
+</body>
+</html>`;
+
+        iframe.srcdoc = htmlContent;
+      }
+
+      // Mise à jour de l'aperçu lors des changements
+      let timeout;
+      editor.onDidChangeModelContent(() => {
+        clearTimeout(timeout);
+        timeout = setTimeout(updatePreview, 500);
+      });
+
+      // Mise à jour initiale
+      updatePreview();
+
+      // Bouton de réinitialisation
+      // @ts-ignore
+      const resetButton = document.querySelector(`[data-editor-id="${editorId}"]`);
+      if (resetButton) {
+        resetButton.addEventListener('click', () => {
+          editor.setValue(code);
+          updatePreview();
+        });
+      }
+
+      // Toggle vue
+      // @ts-ignore
+      const toggleButton = document.querySelector(`[data-container-id="${editorId}"]`);
+      if (toggleButton) {
+        toggleButton.addEventListener('click', () => {
+          const container = editorElement.closest('.editor-container');
+          const currentMode = toggleButton.getAttribute('data-mode') || 'vertical';
+          
+          if (currentMode === 'vertical') {
+            container.classList.add('horizontal');
+            toggleButton.setAttribute('data-mode', 'horizontal');
+            toggleButton.querySelector('span:last-child').textContent = 'Vue verticale';
+          } else {
+            container.classList.remove('horizontal');
+            toggleButton.setAttribute('data-mode', 'vertical');
+            toggleButton.querySelector('span:last-child').textContent = 'Vue horizontale';
+          }
+          
+          // Forcer le redimensionnement de l'éditeur
+          setTimeout(() => editor.layout(), 100);
+        });
+      }
+    }
+
+    // Démarrer l'initialisation
+    initEditor();
+  }
+</script>
+
+<!-- Charger Monaco Editor depuis CDN -->
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+<script is:inline>
+  if (typeof require !== 'undefined') {
+    require.config({ 
+      paths: { 
+        vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs' 
+      } 
+    });
+    require(['vs/editor/editor.main'], function() {
+      // Monaco est maintenant chargé
+    });
+  }
+</script>
+
+<!-- Charger le script CodePen -->
+<script is:inline async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<style>
+  .interactive-editor {
+    margin: 2rem 0;
+    background: #1a1a1a;
+    border-radius: 0.75rem;
+    border: 2px solid #333;
+    overflow: hidden;
+  }
+
+  .editor-title {
+    margin: 0;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 1.1rem;
+    border-bottom: 2px solid #333;
+  }
+
+  .codepen-section {
+    margin-top: 0;
+    padding: 1.5rem;
+    background: #0d0d0d;
+    border-top: 2px solid #333;
+  }
+
+  .codepen-section-title {
+    margin: 0 0 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #667eea;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .codepen-section-title .icon {
+    font-size: 1.3rem;
+  }
+
+  .codepen-container {
+    padding: 0;
+    background: transparent;
+  }
+
+  .codepen {
+    min-height: 500px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .editor-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 500px;
+  }
+
+  .editor-container.horizontal {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .editor-panel,
+  .preview-panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .editor-panel {
+    background: #1e1e1e;
+    border-right: 2px solid #333;
+  }
+
+  .editor-container.horizontal .editor-panel {
+    border-right: none;
+    border-bottom: 2px solid #333;
+  }
+
+  .preview-panel {
+    background: #2a2a2a;
+  }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
+    color: #888;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .panel-icon {
+    font-size: 1.2rem;
+  }
+
+  .panel-title {
+    flex: 1;
+  }
+
+  .reset-button {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.8rem;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .reset-button:hover {
+    background: #764ba2;
+  }
+
+  .reset-button .icon {
+    font-size: 1rem;
+  }
+
+  .monaco-editor {
+    flex: 1;
+    min-height: 400px;
+  }
+
+  .preview-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .preview-iframe {
+    flex: 1;
+    width: 100%;
+    border: none;
+    background: white;
+  }
+
+  .code-source-section {
+    background: #1a1a1a;
+    border-top: 2px solid #333;
+  }
+
+  .code-source-section summary {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #667eea;
+    font-weight: 500;
+    user-select: none;
+    transition: background 0.3s;
+  }
+
+  .code-source-section summary:hover {
+    background: #2a2a2a;
+  }
+
+  .code-source-section summary .icon {
+    font-size: 1.2rem;
+  }
+
+  .code-source-content {
+    padding: 0 1.5rem 1.5rem;
+    background: #0d0d0d;
+  }
+
+  .code-source-content pre {
+    background: #0d0d0d;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 0;
+    border: 1px solid #333;
+  }
+
+  .code-source-content code {
+    color: #50fa7b;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .editor-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: #1a1a1a;
+    border-top: 2px solid #333;
+    flex-wrap: wrap;
+  }
+
+  .action-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .action-button:hover {
+    background: #764ba2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  }
+
+  .action-button .icon {
+    font-size: 1.1rem;
+  }
+
+  .toggle-view {
+    background: #2a2a2a;
+    border: 1px solid #444;
+  }
+
+  .toggle-view:hover {
+    background: #333;
+    border-color: #667eea;
+  }
+
+  @media (prefers-color-scheme: light) {
+    .interactive-editor {
+      background: #f9f9f9;
+      border-color: #ddd;
+    }
+
+    .codepen-container {
+      background: #f5f5f5;
+    }
+
+    .editor-panel {
+      background: #ffffff;
+      border-right-color: #ddd;
+    }
+
+    .editor-container.horizontal .editor-panel {
+      border-bottom-color: #ddd;
+    }
+
+    .preview-panel {
+      background: #fafafa;
+    }
+
+    .panel-header {
+      background: #f0f0f0;
+      border-bottom-color: #ddd;
+      color: #666;
+    }
+
+    .code-source-section {
+      background: #f9f9f9;
+      border-top-color: #ddd;
+    }
+
+    .code-source-section summary:hover {
+      background: #f0f0f0;
+    }
+
+    .code-source-content {
+      background: #f5f5f5;
+    }
+
+    .code-source-content pre {
+      background: #f5f5f5;
+      border-color: #ddd;
+    }
+
+    .code-source-content code {
+      color: #2ecc71;
+    }
+
+    .editor-actions {
+      background: #f0f0f0;
+      border-top-color: #ddd;
+    }
+
+    .toggle-view {
+      background: white;
+      border-color: #ccc;
+      color: #333;
+    }
+
+    .toggle-view:hover {
+      background: #f9f9f9;
+      border-color: #667eea;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .editor-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+    }
+
+    .editor-panel {
+      border-right: none;
+      border-bottom: 2px solid #333;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .editor-title {
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .monaco-editor {
+      min-height: 300px;
+    }
+
+    .action-button {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+</style>

@@ -1,4 +1,4 @@
-# <u>**Les éléments :**</u>  ```<figure>``` et ```<figcaption>```
+# **Les éléments `<figure>` et `<figcaption>`**
 
 Les éléments HTML ```<figure>``` et ```<figcaption>``` sont utilisés ensemble pour regrouper du contenu multimédia (images, vidéos, diagrammes, extraits de code, etc.) avec une légende associée.
 Ils améliorent la **sémantique** du document et l'**accessibilité** en créant une relation explicite entre le contenu et sa description.
@@ -94,12 +94,12 @@ Cet élément inclut uniquement [les attributs universels](https://developer.moz
 
 ## L'élément `<figcaption>`
 
-### Description
+### Description de `<figcaption>`
 
 L'élément ```<figcaption>``` représente la légende ou la description associée au contenu de son parent ```<figure>```.
 Il doit être le **premier** ou le **dernier** enfant de l'élément ```<figure>```.
 
-### Attributs
+### Attributs de `<figcaption>`
 
 Cet élément inclut uniquement [les attributs universels](https://developer.mozilla.org/fr/docs/Web/HTML/Reference/Global_attributes).
 

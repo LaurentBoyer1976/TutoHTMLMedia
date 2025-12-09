@@ -31,8 +31,8 @@ class ArticleFactory{
         // --- LA LOGIQUE DE CHOIX TERNAIRE EST ICI ---
         const donneesDynamiques =
             this.vueType === 'syntaxe'
-                ? this.data.syntaxe  // Si 'syntaxe', on prend ce tableau
-                : this.data.attributs; // Sinon, on prend cet autre tableau
+                ? this.data.syntaxeFormated  // Si 'syntaxe', on prend ce tableau
+                : this.data.attributsFormates; // Sinon, on prend cet autre tableau
 
 
         // Création de la SectionFactory avec les données filtrées

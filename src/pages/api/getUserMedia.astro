@@ -1,0 +1,190 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../Styles/style.css';
+
+// Pour l'instant, nous avons seulement getUserMedia
+// Cette page pourrait être étendue pour d'autres API à l'avenir
+const apiName = 'getUserMedia';
+const title = 'API MediaDevices.getUserMedia()';
+
+// Importer le contenu markdown
+let markdownContent = '';
+try {
+    const mdModule = await import(`../../markdown/api/${apiName}.md`);
+    markdownContent = mdModule.compiledContent();
+} catch (error) {
+    console.error(`Erreur lors du chargement du markdown pour ${apiName}:`, error);
+    markdownContent = '<p>Contenu non disponible</p>';
+}
+---
+
+<Layout title={title}>
+    <main class="api-doc-container">
+        <nav class="breadcrumb">
+            <a href="/">Accueil</a> / 
+            <a href="/documentation">Documentation</a> / 
+            <span>API JavaScript</span> / 
+            <strong>{title}</strong>
+        </nav>
+
+        <div class="api-badge">
+            <span class="badge badge-api">API JavaScript</span>
+            <span class="badge badge-optional">Optionnel / Avancé</span>
+        </div>
+
+        <article class="api-content" set:html={markdownContent} />
+
+        <aside class="related-links">
+            <h3>🔗 Liens utiles</h3>
+            <ul>
+                <li><a href="/api/webcam-demo" class="link-demo">🎥 Démo interactive</a></li>
+                <li><a href="/elements/video" class="link-element">Élément &lt;video&gt;</a></li>
+                <li><a href="/elements/audio" class="link-element">Élément &lt;audio&gt;</a></li>
+                <li><a href="https://developer.mozilla.org/fr/docs/Web/API/MediaDevices/getUserMedia" target="_blank" rel="noopener">📖 MDN Web Docs</a></li>
+            </ul>
+        </aside>
+
+        <nav class="doc-navigation">
+            <a href="/documentation" class="btn btn-secondary">← Retour à la documentation</a>
+            <a href="/api/webcam-demo" class="btn btn-primary">Voir la démo →</a>
+        </nav>
+    </main>
+</Layout>
+
+<style>
+    .api-doc-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .breadcrumb {
+        padding: 1rem 0;
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+
+    .breadcrumb a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+
+    .api-badge {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .badge-api {
+        background-color: #ff6b6b;
+        color: white;
+    }
+
+    .badge-optional {
+        background-color: #ffd93d;
+        color: #333;
+    }
+
+    .api-content {
+        line-height: 1.8;
+        color: #2c3e50;
+    }
+
+    .related-links {
+        margin: 3rem 0;
+        padding: 1.5rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+        border-left: 4px solid #007bff;
+    }
+
+    .related-links h3 {
+        margin-top: 0;
+        color: #2c3e50;
+    }
+
+    .related-links ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .related-links li {
+        padding: 0.5rem 0;
+    }
+
+    .related-links a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .related-links a:hover {
+        text-decoration: underline;
+    }
+
+    .link-demo::before {
+        content: "▶ ";
+        color: #28a745;
+    }
+
+    .doc-navigation {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 2px solid #e9ecef;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+        .doc-navigation {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+            text-align: center;
+        }
+    }
+</style>
