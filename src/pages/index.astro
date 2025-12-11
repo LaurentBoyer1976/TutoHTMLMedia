@@ -16,8 +16,10 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
       <p class="hero-subtitle">+ API JavaScript multimédia pour fonctionnalités avancées</p>
     </section>
 
-    {definitionContent && (
-      <section class="content-section definition-section">
+    {/* WRAPPER: Définition et Éléments côte-à-côte */}
+    <div class="main-content-wrapper">
+      {definitionContent && (
+        <section class="content-section definition-section">
         <h2 class="section-title">📖 Qu'est-ce qu'un média ?</h2>
         <p class="section-subtitle">Matière d'entrée pour comprendre les bases</p>
         
@@ -151,6 +153,7 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
         ))}
       </div>
     </section>
+    </div>
 
     <section class="content-section api-section">
       <h2 class="section-title">⚡ API JavaScript Multimédia</h2>
@@ -427,6 +430,23 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
     box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
   }
 
+  /* Wrapper principal pour mettre définition et éléments côte-à-côte */
+  .main-content-wrapper {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .main-content-wrapper > .definition-section {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .main-content-wrapper > .content-section:not(.definition-section) {
+    flex: 1;
+    min-width: 0;
+  }
+
   /* Styles pour la section Définition */
   .definition-section {
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
@@ -669,6 +689,10 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
   }
 
   @media (max-width: 1024px) {
+    .main-content-wrapper {
+      flex-direction: column;
+    }
+
     .definition-container {
       flex-direction: column;
     }
@@ -687,6 +711,10 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
   @media (max-width: 768px) {
     .hero h1 {
       font-size: 2rem;
+    }
+
+    .main-content-wrapper {
+      flex-direction: column;
     }
 
     .api-grid {
@@ -708,7 +736,9 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
     .definition-section {
       padding: 1.5rem;
     }
-      grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 768px) {
     }
 
     .section-subtitle {
