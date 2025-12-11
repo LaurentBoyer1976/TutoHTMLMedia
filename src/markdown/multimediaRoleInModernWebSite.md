@@ -3,6 +3,7 @@
 ## <u>*Définition:*</u> Un média
 
    Selon le larousse :
+
    1. nom masculin
 
 Procédé permettant la distribution, la diffusion ou la communication d'œuvres, de documents, ou de messages sonores
@@ -10,16 +11,18 @@ ou audiovisuels (presse, cinéma, affiche, radiodiffusion, télédiffusion, vid�
 On trouve aussi médium ou medium au singulier, et media, nom masculin invariable.  
 
   Selon Gemini :  
+
   1. nom masculin  
       Le terme média (nom masculin) désigne tout moyen de distribution, de diffusion ou de communication (interpersonnelle, de masse ou de groupe) d'œuvres
       de documents, de messages écrits, visuels, sonores ou audiovisuels.  
       En général, il fait référence aux moyens de diffusion massive de l'information, comme :  
+
 - La presse (journaux, magazines)
 - La radio
 - La télévision
 - Le cinéma
 - Internet (sites web, réseaux sociaux, etc.) Le mot vient du latin media, pluriel de medium (milieu, intermédiaire).  
-      
+
 ###### <i>On utilise souvent le singulier "un média" et le pluriel "les médias" en français. </i>
 
 ## <u>*Définition média en* <img src="../assets/logo/HTML5%20LOGO.svg" alt="logo HTML5" width="40px" height="45px" style="vertical-align: middle;">:</u>

@@ -11,7 +11,7 @@ class ArticleFactory{
         const articleElement = document.createElement('article');
 
         // CORRECTION 1 : Utilisez les bonnes clés de données pour l'ID et le titre.
-        // J'utilise 'balise' pour l'ID et 'balise' pour le titre H1 (en supposant que ce soit le nom de l'élément)
+        // J'utilise 'balise' pour l'ID et 'balise' pour le titre H1 
         articleElement.id = `article-${this.data.balise}`;
         articleElement.classList.add(`article-${this.data.balise}`);
 
