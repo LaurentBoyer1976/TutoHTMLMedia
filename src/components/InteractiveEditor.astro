@@ -104,6 +104,11 @@ const previewId = `preview-${Math.random().toString(36).substring(7)}`;
     // Attendre que Monaco soit chargé
     function initEditor() {
       if (typeof monaco === 'undefined') {
+        // Attendre l'événement monaco-ready si Monaco n'est pas encore chargé
+        if (!window.monacoReady) {
+          window.addEventListener('monaco-ready', initEditor, { once: true });
+          return;
+        }
         setTimeout(initEditor, 100);
         return;
       }
@@ -233,18 +238,28 @@ ${currentCode}
   }
 </script>
 
-<!-- Charger Monaco Editor depuis CDN -->
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+<!-- Charger Monaco Editor depuis CDN (une seule fois) -->
 <script is:inline>
-  if (typeof require !== 'undefined') {
-    require.config({ 
-      paths: { 
-        vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs' 
-      } 
-    });
-    require(['vs/editor/editor.main'], function() {
-      // Monaco est maintenant chargé
-    });
+  if (!window.monacoLoaded) {
+    window.monacoLoaded = true;
+    
+    const loaderScript = document.createElement('script');
+    loaderScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js';
+    loaderScript.onload = function() {
+      if (typeof require !== 'undefined') {
+        require.config({ 
+          paths: { 
+            vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs' 
+          } 
+        });
+        require(['vs/editor/editor.main'], function() {
+          // Monaco est maintenant chargé
+          window.monacoReady = true;
+          window.dispatchEvent(new Event('monaco-ready'));
+        });
+      }
+    };
+    document.head.appendChild(loaderScript);
   }
 </script>
 

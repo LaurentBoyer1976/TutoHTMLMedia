@@ -160,7 +160,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<video controls width=\"640\" height=\"360\">\n    <source src=\"/video/istockphoto-483045296-640_adpp_is.mp4\" type=\"video/mp4\" />\n    Télécharger la vidéo\n    <a href=\"/video/14733700_3840_2160_60fps.mp4\">MP4</a>\n</video>"
+          "code": "<video controls width=\"640\" height=\"360\">\n    <source src=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\" type=\"video/mp4\" />\n    Votre navigateur ne supporte pas la balise vidéo.\n</video>"
         }
       ],
       "attributs": [
@@ -288,7 +288,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple avec <video>",
-          "code": "<video controls width=\"640\" height=\"360\">\n        <source src=\"/video/istockphoto-483045296-640_adpp_is.mp4\" type=\"video/mp4\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
+          "code": "<video controls width=\"640\" height=\"360\">\n        <source src=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4\" type=\"video/mp4\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
         },
         {
           "titre": "Exemple de syntaxe avec <audio>",
@@ -335,7 +335,7 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple",
-          "code": "<video controls width=\"250\">\n        <source src=\"/video/istockphoto-483045296-640_adpp_is.mp4\" type=\"video/mp4\" />\n       <track default kind=\"captions\" srclang=\"fr\" src=\"/video/istockphoto-483045296-640_adpp_is.mp4\" />\n        <track kind=\"subtitles\" srclang=\"en\" src=\"/shared-assets/tracks/friday-en.vtt\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
+          "code": "<video controls width=\"640\">\n        <source src=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4\" type=\"video/mp4\" />\n        <track default kind=\"captions\" srclang=\"fr\" label=\"Français\" />\n        Votre navigateur ne prend pas en charge la balise vidéo.\n    </video>"
         }
       ],
       "attributs": [
@@ -450,7 +450,7 @@
         },
         {
           "titre": "Exemple avec une vidéo",
-          "code": "<figure>\n        <video controls width=\"640\" height=\"360\">\n            <source src=\"/video/istockphoto-483045296-640_adpp_is.mp4\" type=\"video/mp4\" />\n        </video>\n        <figcaption>Vidéo de démonstration - Lanterne de papier</figcaption>\n    </figure>"
+          "code": "<figure>\n        <video controls width=\"640\" height=\"360\">\n            <source src=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4\" type=\"video/mp4\" />\n        </video>\n        <figcaption>Vidéo de démonstration - Sintel</figcaption>\n    </figure>"
         }
       ],
       "attributs": [
@@ -469,11 +469,11 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple avec une vidéo",
-          "code": "<object data=\"/video/14733700_3840_2160_60fps.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/video/istockphoto-483045296-640_adpp_is.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
+          "code": "<object data=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.</p>\n    </object>"
         },
         {
           "titre": "Exemple avec une deuxième vidéo",
-          "code": "<object data=\"/video/14542855_3840_2160_60fps.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.\n           <a href=\"/video/istockphoto-1140675444-640_adpp_is.mp4\">Télécharger la vidéo</a>\n        </p>\n    </object>"
+          "code": "<object data=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4\"\n            type=\"video/mp4\"\n            width=\"640\"\n            height=\"480\">\n        <p>Votre navigateur ne prend pas en charge les vidéos.</p>\n    </object>"
         },
         {
           "titre": "Exemple avec une image",
@@ -506,11 +506,11 @@
       "syntaxe": [
         {
           "titre": "Exemple de syntaxe simple avec une vidéo",
-          "code": "<embed type=\"video/mp4\"\n           src=\"/video/istockphoto-1140675444-640_adpp_is.mp4\"\n           width=\"640\"\n           height=\"480\">"
+          "code": "<embed type=\"video/mp4\"\n           src=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4\"\n           width=\"640\"\n           height=\"480\">"
         },
         {
           "titre": "Exemple avec une deuxième vidéo",
-          "code": "<embed type=\"video/mp4\"\n           src=\"/video/istockphoto-1140675444-640_adpp_is.mp4\"\n           width=\"640\"\n           height=\"480\">"
+          "code": "<embed type=\"video/mp4\"\n           src=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4\"\n           width=\"640\"\n           height=\"480\">"
         }
       ],
       "attributs": [
@@ -523,6 +523,79 @@
           "name": "type",
           "type": "MIME",
           "description": "Le type MIME à utiliser pour sélectionner le plugin à instancier."
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "balise": "iframe",
+      "section": "Élément HTML",
+      "description": "L'élément HTML ```<iframe>``` (inline frame) représente un contexte de navigation imbriqué, permettant d'intégrer une autre page HTML dans la page courante. Utilisé pour intégrer des vidéos YouTube, cartes Google Maps, widgets externes, etc.",
+      "syntaxe": [
+        {
+          "titre": "Exemple avec vidéo YouTube",
+          "code": "<iframe \n  width=\"560\" \n  height=\"315\" \n  src=\"https://www.youtube.com/embed/_YMa15oTH8s?si=5lp8Ayzgih15plhi\" \n  title=\"YouTube video player\" \n  frameborder=\"0\" \n  allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" \n  referrerpolicy=\"strict-origin-when-cross-origin\" \n  allowfullscreen>\n</iframe>"
+        },
+        {
+          "titre": "Exemple avec Google Maps",
+          "code": "<iframe \n  src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4703.1305911201625!2d7.745103356741716!3d48.58030632806635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796c9bc2572cdef%3A0xc3eef3b73fee8fcd!2sPalais%20Rohan!5e0!3m2!1sfr!2sfr!4v1765460014533!5m2!1sfr!2sfr\" \n  width=\"600\" \n  height=\"450\" \n  style=\"border:0;\" \n  allowfullscreen=\"\" \n  loading=\"lazy\" \n  referrerpolicy=\"no-referrer-when-downgrade\" \n  title=\"Carte du Palais Rohan\">\n</iframe>"
+        },
+        {
+          "titre": "Exemple avec CodePen",
+          "code": "<iframe \n  width=\"560\" \n  height=\"315\" \n  src=\"https://codepen.io/team/codepen/embed/preview/PNaGbb\" \n  title=\"Exemple CodePen\" \n  frameborder=\"0\" \n  loading=\"lazy\" \n  allowfullscreen>\n</iframe>"
+        }
+      ],
+      "attributs": [
+        {
+          "name": "src",
+          "type": "URL (obligatoire)",
+          "description": "L'URL de la page à intégrer dans l'iframe."
+        },
+        {
+          "name": "title",
+          "type": "texte (obligatoire pour l'accessibilité)",
+          "description": "Description accessible du contenu de l'iframe."
+        },
+        {
+          "name": "width",
+          "type": "nombre",
+          "description": "Largeur de l'iframe en pixels."
+        },
+        {
+          "name": "height",
+          "type": "nombre",
+          "description": "Hauteur de l'iframe en pixels."
+        },
+        {
+          "name": "sandbox",
+          "type": "valeur contrainte",
+          "description": "Active des restrictions de sécurité sur le contenu de l'iframe.",
+          "valeurs": [
+            "allow-scripts",
+            "allow-same-origin",
+            "allow-forms",
+            "allow-popups",
+            "allow-modals"
+          ]
+        },
+        {
+          "name": "allow",
+          "type": "liste de permissions",
+          "description": "Contrôle les fonctionnalités autorisées (géolocalisation, microphone, caméra, etc.)."
+        },
+        {
+          "name": "loading",
+          "type": "valeur contrainte",
+          "description": "Contrôle le chargement différé de l'iframe.",
+          "valeurs": [
+            "lazy",
+            "eager"
+          ]
+        },
+        {
+          "name": "allowfullscreen",
+          "type": "booléen",
+          "description": "Permet à l'iframe d'être affichée en plein écran."
         }
       ]
     }
