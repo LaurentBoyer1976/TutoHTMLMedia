@@ -5,6 +5,7 @@
 **Objectif :** Intégrer la section `"definition"` du JSON (inutilisée) sur la page d'accueil comme introduction pédagogique.
 
 **Résultat :** Section "Qu'est-ce qu'un média ?" avec layout côte-à-côte :
+
 - **Gauche** : Article détaillé avec contenu du markdown
 - **Droite** : 3 cartes définitions colorées (Larousse, Générale, HTML5)
 
@@ -13,7 +14,9 @@
 ## 📊 Modifications Principales
 
 ### Fichier Modifié
+
 **`src/pages/index.astro`**
+
 - Ajout section définition avec contenu du markdown
 - Layout côte-à-côte avec flexbox
 - Intégration des 3 cartes définitions (sidebar)
@@ -21,11 +24,13 @@
 - Support responsive et dark/light mode
 
 ### Contenu Intégré
+
 - **Larousse** : Définition officielle + note
 - **Gemini** : Définition générale + 5 exemples + étymologie
 - **HTML5** : Contexte web + 4 types de médias + résumé
 
 ### Styles Ajoutés
+
 - `.definition-container` : Flexbox layout
 - `.definition-article` : Article au centre avec padding
 - `.definition-sidebar` : Cartes sur le côté
@@ -148,6 +153,7 @@ npm run dev
 ## 🗑️ Fichiers Supprimés (Documentation Redondante)
 
 Les fichiers suivants ont été supprimés car redondants :
+
 - INTEGRATION_DEFINITIONS.md
 - CHANGELOG_DEFINITIONS.md
 - WORK_COMPLETED.md
@@ -225,6 +231,7 @@ refactor: Nettoyer documentation - garder synthèse unique
 ## 🎓 Résultat Final
 
 La section `"definition"` n'est plus inutilisée. Elle s'affiche magnifiquement sur la page d'accueil avec :
+
 - Contenu détaillé à gauche
 - 3 cartes définitions colorées à droite
 - Layout professionnel et responsive
