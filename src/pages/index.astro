@@ -21,76 +21,119 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
         <h2 class="section-title">📖 Qu'est-ce qu'un média ?</h2>
         <p class="section-subtitle">Matière d'entrée pour comprendre les bases</p>
         
-        <div class="definition-cards">
-          {definitionContent.definitions && (
-            <>
-              {definitionContent.definitions.larousse && (
-                <div class="definition-card larousse-card">
-                  <div class="definition-source">📚 Larousse</div>
-                  <h3>{definitionContent.definitions.larousse.type}</h3>
-                  <p class="definition-text">{definitionContent.definitions.larousse.definition}</p>
-                  {definitionContent.definitions.larousse.notes && (
-                    <p class="definition-notes">
-                      <strong>Note :</strong> {definitionContent.definitions.larousse.notes}
-                    </p>
-                  )}
-                </div>
-              )}
-              
-              {definitionContent.definitions.gemini && (
-                <div class="definition-card gemini-card">
-                  <div class="definition-source">✨ Définition Générale</div>
-                  <h3>{definitionContent.definitions.gemini.type}</h3>
-                  <p class="definition-text">{definitionContent.definitions.gemini.definition}</p>
-                  {definitionContent.definitions.gemini.exemples && (
-                    <div class="definition-exemples">
-                      <h4>Exemples :</h4>
-                      <ul>
-                        {definitionContent.definitions.gemini.exemples.map((exemple: string) => (
-                          <li>{exemple}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  {definitionContent.definitions.gemini.etymologie && (
-                    <p class="definition-etymologie">
-                      <em>Étymologie : {definitionContent.definitions.gemini.etymologie}</em>
-                    </p>
-                  )}
-                </div>
-              )}
-              
-              {definitionContent.definitions.html5 && (
-                <div class="definition-card html5-card">
-                  <div class="definition-source">🏷️ En HTML5</div>
-                  <h3>{definitionContent.definitions.html5.type}</h3>
-                  <p class="definition-text">{definitionContent.definitions.html5.definition}</p>
-                  {definitionContent.definitions.html5.exemples && (
-                    <div class="definition-exemples">
-                      <h4>Types de médias HTML5 :</h4>
-                      <ul>
-                        {definitionContent.definitions.html5.exemples.map((exemple: string) => (
-                          <li>{exemple}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  {definitionContent.definitions.html5.resume && (
-                    <p class="definition-resume">
-                      <strong>📌 Résumé :</strong> {definitionContent.definitions.html5.resume}
-                    </p>
-                  )}
-                </div>
-              )}
-            </>
-          )}
+        <div class="definition-container">
+          {/* Article principal au centre */}
+          <article class="definition-article">
+            <h3>Un Média</h3>
+            
+            <h4>Selon le Larousse</h4>
+            <p>
+              <strong>Média</strong> (nom masculin) - Procédé permettant la distribution, la diffusion ou la communication d'œuvres, de documents, ou de messages sonores ou audiovisuels (presse, cinéma, affiche, radiodiffusion, télédiffusion, vidéographie, télédistribution, télématique, télécommunication).
+            </p>
+            <p class="note">
+              <em>Note :</em> On trouve aussi <em>médium</em> ou <em>medium</em> au singulier, et <em>media</em>, nom masculin invariable.
+            </p>
+
+            <h4>Selon Gemini</h4>
+            <p>
+              <strong>Média</strong> (nom masculin) - Le terme média désigne tout moyen de distribution, de diffusion ou de communication (interpersonnelle, de masse ou de groupe) d'œuvres, de documents, de messages écrits, visuels, sonores ou audiovisuels. En général, il fait référence aux moyens de diffusion massive de l'information.
+            </p>
+            <p class="examples-intro">Exemples de médias :</p>
+            <ul class="examples-list">
+              <li>La presse (journaux, magazines)</li>
+              <li>La radio</li>
+              <li>La télévision</li>
+              <li>Le cinéma</li>
+              <li>Internet (sites web, réseaux sociaux, etc.)</li>
+            </ul>
+            <p class="etymology">
+              <em>Étymologie :</em> Le mot vient du latin <strong>media</strong>, pluriel de <strong>medium</strong> (milieu, intermédiaire).
+            </p>
+
+            <h4>Définition en HTML5</h4>
+            <p>
+              Dans le contexte du HTML et du développement web, lorsque l'on parle de média, on fait référence à tout contenu non textuel qui sert de support d'information au sein d'une page web.
+            </p>
+            <p class="examples-intro">Ceci inclut notamment :</p>
+            <ol class="examples-list">
+              <li><strong>Images et Photos :</strong> Utilisation des balises <code>&lt;picture&gt;</code>, <code>&lt;img&gt;</code>, ou formats vectoriels comme le <code>&lt;svg&gt;</code></li>
+              <li><strong>Vidéos :</strong> Utilisation de la balise <code>&lt;video&gt;</code></li>
+              <li><strong>Audio :</strong> Utilisation de la balise <code>&lt;audio&gt;</code></li>
+              <li><strong>Contenu interactif/multimédia :</strong> Animations, graphiques dynamiques, etc., souvent intégrés via <code>&lt;iframe&gt;</code> ou d'autres techniques</li>
+            </ol>
+            <p class="definition-resume">
+              <strong>En bref :</strong> En HTML, les médias sont les vecteurs d'information et de contenu autres que le texte pur.
+            </p>
+          </article>
+
+          {/* Cartes définitions sur le côté */}
+          <aside class="definition-sidebar">
+            {definitionContent.definitions && (
+              <>
+                {definitionContent.definitions.larousse && (
+                  <div class="definition-card larousse-card">
+                    <div class="definition-source">📚 Larousse</div>
+                    <h5>{definitionContent.definitions.larousse.type}</h5>
+                    <p class="definition-text">{definitionContent.definitions.larousse.definition}</p>
+                    {definitionContent.definitions.larousse.notes && (
+                      <p class="definition-notes">
+                        <strong>Note :</strong> {definitionContent.definitions.larousse.notes}
+                      </p>
+                    )}
+                  </div>
+                )}
+                
+                {definitionContent.definitions.gemini && (
+                  <div class="definition-card gemini-card">
+                    <div class="definition-source">✨ Général</div>
+                    <h5>{definitionContent.definitions.gemini.type}</h5>
+                    <p class="definition-text">{definitionContent.definitions.gemini.definition}</p>
+                    {definitionContent.definitions.gemini.exemples && (
+                      <div class="definition-exemples">
+                        <h6>Exemples :</h6>
+                        <ul>
+                          {definitionContent.definitions.gemini.exemples.map((exemple: string) => (
+                            <li>{exemple}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {definitionContent.definitions.gemini.etymologie && (
+                      <p class="definition-etymologie">
+                        <em>{definitionContent.definitions.gemini.etymologie}</em>
+                      </p>
+                    )}
+                  </div>
+                )}
+                
+                {definitionContent.definitions.html5 && (
+                  <div class="definition-card html5-card">
+                    <div class="definition-source">🏷️ HTML5</div>
+                    <h5>{definitionContent.definitions.html5.type}</h5>
+                    <p class="definition-text">{definitionContent.definitions.html5.definition}</p>
+                    {definitionContent.definitions.html5.exemples && (
+                      <div class="definition-exemples">
+                        <h6>Types de médias :</h6>
+                        <ul>
+                          {definitionContent.definitions.html5.exemples.map((exemple: string) => (
+                            <li>{exemple}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {definitionContent.definitions.html5.resume && (
+                      <p class="definition-resume">
+                        <strong>Résumé :</strong> {definitionContent.definitions.html5.resume}
+                      </p>
+                    )}
+                  </div>
+                )}
+              </>
+            )}
+          </aside>
         </div>
       </section>
     )}
-
-    <div class="definition-cta">
-      <p>Pour une explication plus complète, consultez <a href="/elements/audio"><strong>notre documentation</strong></a> sur les éléments HTML5 médias.</p>
-    </div>
 
     <section class="content-section">
       <h2 class="section-title">🏷️ Éléments HTML5 Multimédia</h2>
@@ -388,13 +431,98 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
   .definition-section {
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
     border-top: 3px solid #667eea;
+    padding: 2rem;
   }
 
-  .definition-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
+  .definition-container {
+    display: flex;
+    gap: 2rem;
     margin-top: 2rem;
+  }
+
+  .definition-article {
+    flex: 1;
+    color: #ccc;
+    line-height: 1.8;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+    border-left: 4px solid #667eea;
+  }
+
+  .definition-article h3 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .definition-article h4 {
+    color: #667eea;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .definition-article p {
+    margin: 0.8rem 0;
+  }
+
+  .definition-article p.note {
+    background: rgba(255, 152, 0, 0.1);
+    padding: 1rem;
+    border-left: 3px solid #ff9800;
+    border-radius: 0.3rem;
+    color: #ddd;
+  }
+
+  .definition-article p.examples-intro {
+    font-weight: 600;
+    color: #ddd;
+    margin-top: 1rem;
+  }
+
+  .definition-article ol.examples-list,
+  .definition-article ul.examples-list {
+    margin: 0.8rem 0 0.8rem 2rem;
+    color: #bbb;
+  }
+
+  .definition-article li {
+    margin: 0.5rem 0;
+  }
+
+  .definition-article code {
+    background: rgba(102, 126, 234, 0.2);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.2rem;
+    color: #88ccff;
+    font-family: 'Courier New', monospace;
+  }
+
+  .definition-article p.etymology {
+    background: rgba(76, 175, 80, 0.1);
+    padding: 1rem;
+    border-left: 3px solid #4caf50;
+    border-radius: 0.3rem;
+    font-style: italic;
+    margin-top: 1rem;
+  }
+
+  .definition-article p.definition-resume {
+    background: rgba(102, 126, 234, 0.15);
+    padding: 1rem;
+    border-left: 3px solid #667eea;
+    border-radius: 0.3rem;
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+
+  .definition-sidebar {
+    flex: 0 0 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
   .definition-card {
@@ -406,33 +534,22 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
   }
 
   .definition-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
   }
 
-  .definition-cta {
-    text-align: center;
-    margin: 2rem 0;
-    padding: 1.5rem;
-    background: rgba(102, 126, 234, 0.08);
-    border-radius: 0.5rem;
-    border-left: 3px solid #667eea;
+  .definition-card h5 {
+    color: #fff;
+    font-size: 1rem;
+    margin: 0.5rem 0 0.8rem 0;
   }
 
-  .definition-cta p {
-    color: #ccc;
-    margin: 0;
-    font-size: 0.95rem;
-  }
-
-  .definition-cta a {
-    color: #667eea;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .definition-cta a:hover {
-    color: #888eda;
+  .definition-card h6 {
+    color: #fff;
+    font-size: 0.85rem;
+    margin: 0.8rem 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
   }
 
   .larousse-card {
@@ -551,6 +668,22 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
     font-weight: bold;
   }
 
+  @media (max-width: 1024px) {
+    .definition-container {
+      flex-direction: column;
+    }
+
+    .definition-sidebar {
+      flex: 1;
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .definition-card {
+      flex: 1;
+    }
+  }
+
   @media (max-width: 768px) {
     .hero h1 {
       font-size: 2rem;
@@ -560,7 +693,21 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
       grid-template-columns: 1fr;
     }
 
-    .definition-cards {
+    .definition-container {
+      flex-direction: column;
+    }
+
+    .definition-sidebar {
+      flex-direction: column;
+    }
+
+    .definition-article {
+      padding: 1.5rem;
+    }
+
+    .definition-section {
+      padding: 1.5rem;
+    }
       grid-template-columns: 1fr;
     }
 
@@ -640,6 +787,51 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
       color: #333;
     }
 
+    .definition-article {
+      background: rgba(0, 0, 0, 0.05);
+      color: #555;
+    }
+
+    .definition-article h3 {
+      color: #333;
+    }
+
+    .definition-article h4 {
+      color: #667eea;
+    }
+
+    .definition-article p.note {
+      background: rgba(255, 152, 0, 0.1);
+      color: #666;
+      border-left-color: #ff9800;
+    }
+
+    .definition-article p.examples-intro {
+      color: #333;
+    }
+
+    .definition-article ol.examples-list,
+    .definition-article ul.examples-list {
+      color: #666;
+    }
+
+    .definition-article code {
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+    }
+
+    .definition-article p.etymology {
+      background: rgba(76, 175, 80, 0.1);
+      color: #666;
+      border-left-color: #4caf50;
+    }
+
+    .definition-article p.definition-resume {
+      background: rgba(102, 126, 234, 0.1);
+      color: #555;
+      border-left-color: #667eea;
+    }
+
     .definition-text {
       color: #555;
     }
@@ -675,23 +867,6 @@ const definitionContent = definitions.find((def: any) => def.id === 'multimediaR
 
     .definition-card:hover {
       box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
-    }
-
-    .definition-cta {
-      background: rgba(102, 126, 234, 0.12);
-      border-left-color: #667eea;
-    }
-
-    .definition-cta p {
-      color: #555;
-    }
-
-    .definition-cta a {
-      color: #667eea;
-    }
-
-    .definition-cta a:hover {
-      color: #764ba2;
     }
   }
 </style>
