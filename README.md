@@ -425,4 +425,10 @@ Projet pédagogique sous licence MIT.
 
 ---
 
-**Dernière mise à jour** : 11 décembre 2025
+## 📖 Documentation technique
+
+- [Bonnes pratiques pour les Media Queries](/docs/MEDIA-QUERIES-BEST-PRACTICES.md)
+
+---
+
+**Dernière mise à jour** : 13 décembre 2025
