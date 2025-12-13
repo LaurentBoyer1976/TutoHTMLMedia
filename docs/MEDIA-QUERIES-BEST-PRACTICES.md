@@ -37,7 +37,7 @@
 
 ## Audit du repository
 
-**Date** : 13 décembre 2024
+**Date** : 13 décembre 2025
 
 **Résultat** : ✅ Aucune syntaxe obsolète détectée
 

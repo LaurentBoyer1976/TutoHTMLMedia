@@ -431,4 +431,4 @@ Projet pédagogique sous licence MIT.
 
 ---
 
-**Dernière mise à jour** : 13 décembre 2024
+**Dernière mise à jour** : 13 décembre 2025
