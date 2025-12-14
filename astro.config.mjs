@@ -2,9 +2,10 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 // Configuration pour Always Data (hébergement traditionnel)
-// URL: https://your-domain.alwaysdata.net ou votre domaine personnalisé
+// Site : TutoHTMLMedia-LPDWCA-20-26
+// Répertoire racine : /home/boyer-laurent/www/
 export default defineConfig({
-  site: 'https://your-domain.alwaysdata.net', // À remplacer par votre domaine Always Data
+  site: 'https://tutohtmlmedia-lpdwca-20-26.alwaysdata.net',
   // base: '/', // Pas besoin de base path avec Always Data
   srcDir: './src',
   publicDir: './public',

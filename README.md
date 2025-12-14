@@ -5,6 +5,7 @@ Un tutoriel interactif moderne pour apprendre à intégrer et manipuler des méd
 ## 🎯 Objectif
 
 Ce projet est destiné aux débutants souhaitant maîtriser :
+
 - ✅ Les **balises HTML5 multimédia** (img, picture, audio, video, etc.)
 - ✅ Les **API JavaScript optionnelles** (getUserMedia pour webcam/micro)
 - ✅ Les **bonnes pratiques d'intégration** de médias
@@ -57,7 +58,7 @@ npm run build
 
 ## � Structure du Projet
 
-```
+```mermaid
 TutoHTMLMedia/
 ├── src/
 │   ├── pages/                    ← Routes (HTML générés)
@@ -91,7 +92,7 @@ TutoHTMLMedia/
 
 | Commande | Description |
 |----------|------------|
-| `npm run dev` | Démarrer le serveur de développement (http://localhost:5173) |
+| `npm run dev` | Démarrer le serveur de développement (<http://localhost:5173>) |
 | `npm run build` | Construire le site statique dans `./dist/` |
 | `npm run preview` | Prévisualiser le build localement |
 | `npm run astro ...` | Exécuter des commandes Astro CLI |
@@ -99,16 +100,19 @@ TutoHTMLMedia/
 ## 🎓 Progression Conseillée
 
 ### Niveau Débutant
+
 1. **Images** : `<img>`, `<picture>`, `<source>`
 2. **Audio** : `<audio>`, `<track>`
 3. **Sémantique** : `<figure>`, `<figcaption>`
 
 ### Niveau Intermédiaire
+
 1. **Vidéo** : `<video>`, `<track>`
 2. **Canvas** : Dessins et animations
 3. **SVG** : Graphiques vectoriels
 
 ### Niveau Avancé
+
 1. **API getUserMedia** : Accès webcam/microphone
 2. **Démos interactives** : Capture de photos
 3. **Bonnes pratiques** : Performance et accessibilité
@@ -120,6 +124,7 @@ TutoHTMLMedia/
 Always Data résout les problèmes de GitHub Pages en fournissant un vrai serveur web.
 
 **Avantages :**
+
 - ✅ Routing complet à la racine (`/`)
 - ✅ Pas de configuration `baseUrl` requise
 - ✅ CSP flexible
@@ -127,6 +132,7 @@ Always Data résout les problèmes de GitHub Pages en fournissant un vrai serveu
 - ✅ Plan gratuit disponible
 
 **Étapes rapides :**
+
 ```bash
 # 1. Créer un compte : https://www.alwaysdata.com/
 # 2. Builder le projet
@@ -137,12 +143,14 @@ npm run build
 ```
 
 **Guides détaillés :**
+
 - 📖 `QUICK_START_ALWAYSDATA.md` - Déploiement en 5 minutes
 - 📖 `ALWAYSDATA_UPLOAD_GUIDE.md` - Guide complet d'upload
 - 📖 `ALWAYSDATA_SUMMARY.md` - Comparaison GitHub Pages vs Always Data
 - 📖 `STRUCTURE_VISUAL.md` - Architecture visuelle
 
 **Scripts de déploiement :**
+
 - 🚀 `deploy-alwaysdata-prepare.ps1` - Préparation Windows automatisée
 - 🚀 `deploy-alwaysdata.bat` - Script Windows
 - 🚀 `deploy-alwaysdata.sh` - Script Linux/Mac
@@ -180,7 +188,7 @@ npm run build
 |------|-------|
 | **Astro** | Framework web moderne (SSG) |
 | **HTML5** | Balises multimédia natives |
-| **CSS3** | Styles responsifs et animations |
+| **CSS3** | Styles responsives et animations |
 | **TypeScript** | Code côté client typé |
 | **Markdown** | Documentation structurée |
 | **JavaScript** | API multimédia (getUserMedia, Canvas, etc.) |
@@ -211,11 +219,13 @@ npm run build
 Les API JavaScript (getUserMedia, etc.) sont des **fonctionnalités optionnelles et avancées**.
 
 **Prérequis :**
+
 - HTTPS (ou localhost pour développement)
 - Autorisation de l'utilisateur au runtime
 - Navigateurs modernes (Chrome 53+, Firefox 55+, Safari 11+, Edge 79+)
 
 **Sécurité :**
+
 - ✅ Toutes les captures webcam/micro sont **100% locales**
 - ✅ **Aucune donnée** n'est envoyée à un serveur
 - ✅ Les permissions sont gérées par le navigateur
@@ -223,6 +233,7 @@ Les API JavaScript (getUserMedia, etc.) sont des **fonctionnalités optionnelles
 ### Compatibilité Navigateur
 
 Tous les éléments HTML5 sont supportés dans :
+
 - Chrome/Edge 90+
 - Firefox 88+
 - Safari 15+
@@ -296,7 +307,6 @@ Les contributions sont bienvenues ! Pour contribuer :
 
 **Status** : ✅ Production Ready pour Always Data
 
-
 - ✅ **Les API JavaScript optionnelles** (getUserMedia pour webcam/micro)
 
 - ✅ **Des exemples pratiques et interactifs**- ✅ **Les API JavaScript optionnelles** (getUserMedia pour webcam/micro)│   └── (fichiers statiques)
@@ -361,7 +371,7 @@ Les contributions sont bienvenues ! Pour contribuer :
 
 - `<track>` - Sous-titres et pistes│   │   └── Layout.astro
 
-## 🚀 Démarrage Rapide
+## 🚀Démarrage Rapide
 
 │   ├── markdown/
 
@@ -409,7 +419,7 @@ npm run dev- `<svg>` - Graphiques vectoriels│   │   └── index.astro
 
 ## 📁 Structure du Projet
 
-```text
+```mermaid
 
 TutoHTMLMedia/- **MediaDevices.getUserMedia()** : Accès webcam et microphone| Commande                   | Action                                           |
 
@@ -489,7 +499,7 @@ TutoHTMLMedia/
 
 ├── src/1. **Configuration** : `vite.config.js` → `astro.config.mjs`
 
-## 🎨 Architecture & Design
+## 🎨Architecture & Design
 
 │   ├── assets/              # Médias (images, audio, vidéo)2. **Point d'entrée** : `index.html` + `src/JS/index.js` → `src/pages/index.astro`
 
@@ -687,7 +697,7 @@ Les API JavaScript (getUserMedia, etc.) sont des fonctionnalités **optionnelles
 
 ---
 
-## 📄 Licence
+## 📄Licence
 
 Projet pédagogique sous licence MIT.
 
