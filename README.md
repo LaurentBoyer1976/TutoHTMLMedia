@@ -58,7 +58,7 @@ npm run build
 
 ## � Structure du Projet
 
-```mermaid
+```markdown
 TutoHTMLMedia/
 ├── src/
 │   ├── pages/                    ← Routes (HTML générés)
@@ -419,7 +419,7 @@ npm run dev- `<svg>` - Graphiques vectoriels│   │   └── index.astro
 
 ## 📁 Structure du Projet
 
-```mermaid
+```mark
 
 TutoHTMLMedia/- **MediaDevices.getUserMedia()** : Accès webcam et microphone| Commande                   | Action                                           |
 
