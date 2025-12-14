@@ -1,12 +1,311 @@
-# 📚 TutoHTMLMedia - Tutoriel HTML5 Multimédia# 📚 TutoHTMLMedia - Tutoriel HTML5 Multimédia# Tutoriel HTML Media - Projet Astro
+# 📚 TutoHTMLMedia - Tutoriel HTML5 Multimédia
 
-## 🎯 Objectif du Projet## 🎯 Objectif du Projet## 🚀 Structure du Projet
+Un tutoriel interactif moderne pour apprendre à intégrer et manipuler des médias dans les pages web avec **HTML5 et JavaScript**.
 
-Ce projet est un tutoriel interactif destiné aux débutants pour apprendre à intégrer et manipuler des médias dans les pages web modernes.Ce projet est un tutoriel interactif destiné aux débutants pour apprendre à intégrer et manipuler des médias dans les pages web modernes. Il couvre :```text
+## 🎯 Objectif
 
-### Contenu du Tutoriel/
+Ce projet est destiné aux débutants souhaitant maîtriser :
 
-- ✅ **Les balises HTML5 multimédia** (img, picture, audio, video, etc.)- ✅ **Les balises HTML5 multimédia** (img, picture, audio, video, etc.)├── public/
+- ✅ Les **balises HTML5 multimédia** (img, picture, audio, video, etc.)
+- ✅ Les **API JavaScript optionnelles** (getUserMedia pour webcam/micro)
+- ✅ Les **bonnes pratiques d'intégration** de médias
+- ✅ L'**accessibilité et la performance** multimédia
+
+## 📋 Contenu du Tutoriel
+
+### 🏷️ Balises HTML5 Obligatoires (11 éléments)
+
+| Catégorie | Éléments |
+|-----------|----------|
+| **Images** | `<img>`, `<picture>`, `<source>` |
+| **Audio & Vidéo** | `<audio>`, `<video>`, `<track>` |
+| **Graphiques** | `<canvas>`, `<svg>` |
+| **Sémantique** | `<figure>`, `<figcaption>` |
+| **Hérités** | `<object>`, `<embed>` |
+
+### ⚡ API JavaScript Avancée (Optionnel)
+
+- **MediaDevices.getUserMedia()** : Accès à la webcam et au microphone
+- **Démonstrations interactives** : Capture de photos en temps réel
+- **Exemples pratiques** : Enregistrement audio et vidéo
+
+## 🚀 Démarrage Rapide
+
+### Installation & Développement
+
+```bash
+# 1. Cloner ou télécharger le projet
+cd TutoHTMLMedia
+
+# 2. Installer les dépendances
+npm install
+
+# 3. Lancer le serveur de développement
+npm run dev
+
+# 4. Ouvrir dans votre navigateur
+# → http://localhost:5173
+```
+
+### Build pour Production
+
+```bash
+# Construire le site statique
+npm run build
+
+# Les fichiers sont dans ./dist/
+```
+
+## � Structure du Projet
+
+```mermaid
+TutoHTMLMedia/
+├── src/
+│   ├── pages/                    ← Routes (HTML générés)
+│   │   ├── index.astro          → / (Accueil)
+│   │   ├── documentation.astro  → /documentation
+│   │   ├── elements/
+│   │   │   └── [balise].astro   → /elements/[balise]
+│   │   └── api/
+│   │       ├── getUserMedia.astro → /api/getUserMedia
+│   │       └── webcam-demo.astro  → /api/webcam-demo
+│   │
+│   ├── components/              ← Composants réutilisables
+│   ├── layouts/                 ← Layout principal
+│   ├── Styles/                  ← CSS globaux
+│   ├── markdown/                ← Documentation Markdown
+│   ├── datas/Json/              ← Données des éléments
+│   └── assets/                  ← Médias (img, audio, vidéo)
+│
+├── public/                      ← Assets statiques
+│   ├── assets/
+│   │   └── html5-et-multimedia.pdf
+│   └── favicon.svg
+│
+├── dist/                        ← Build statique (après npm run build)
+├── astro.config.mjs            ← Configuration Astro
+├── package.json                ← Dépendances npm
+└── README.md                   ← Ce fichier
+```
+
+## 🛠️ Commandes npm
+
+| Commande | Description |
+|----------|------------|
+| `npm run dev` | Démarrer le serveur de développement (<http://localhost:5173>) |
+| `npm run build` | Construire le site statique dans `./dist/` |
+| `npm run preview` | Prévisualiser le build localement |
+| `npm run astro ...` | Exécuter des commandes Astro CLI |
+
+## 🎓 Progression Conseillée
+
+### Niveau Débutant
+
+1. **Images** : `<img>`, `<picture>`, `<source>`
+2. **Audio** : `<audio>`, `<track>`
+3. **Sémantique** : `<figure>`, `<figcaption>`
+
+### Niveau Intermédiaire
+
+1. **Vidéo** : `<video>`, `<track>`
+2. **Canvas** : Dessins et animations
+3. **SVG** : Graphiques vectoriels
+
+### Niveau Avancé
+
+1. **API getUserMedia** : Accès webcam/microphone
+2. **Démos interactives** : Capture de photos
+3. **Bonnes pratiques** : Performance et accessibilité
+
+## 🌐 Déploiement
+
+### Option 1 : Always Data (Recommandé) ⭐
+
+Always Data résout les problèmes de GitHub Pages en fournissant un vrai serveur web.
+
+**Avantages :**
+
+- ✅ Routing complet à la racine (`/`)
+- ✅ Pas de configuration `baseUrl` requise
+- ✅ CSP flexible
+- ✅ Support Email
+- ✅ Plan gratuit disponible
+
+**Étapes rapides :**
+
+```bash
+# 1. Créer un compte : https://www.alwaysdata.com/
+# 2. Builder le projet
+npm run build
+
+# 3. Uploader ./dist/ via FileZilla (SFTP)
+# 4. Tester : https://votre-domaine.alwaysdata.net
+```
+
+**Guides détaillés :**
+
+- 📖 `QUICK_START_ALWAYSDATA.md` - Déploiement en 5 minutes
+- 📖 `ALWAYSDATA_UPLOAD_GUIDE.md` - Guide complet d'upload
+- 📖 `ALWAYSDATA_SUMMARY.md` - Comparaison GitHub Pages vs Always Data
+- 📖 `STRUCTURE_VISUAL.md` - Architecture visuelle
+
+**Scripts de déploiement :**
+
+- 🚀 `deploy-alwaysdata-prepare.ps1` - Préparation Windows automatisée
+- 🚀 `deploy-alwaysdata.bat` - Script Windows
+- 🚀 `deploy-alwaysdata.sh` - Script Linux/Mac
+
+### Option 2 : GitHub Pages (Limité)
+
+⚠️ GitHub Pages a des limitations avec le routing. Voir `ALWAYSDATA_SUMMARY.md` pour les détails.
+
+## 🎨 Architecture & Design
+
+### Responsive Design
+
+- **Desktop (>1024px)** : Grille 2 colonnes côte-à-côte
+- **Tablet (768-1024px)** : Layout flexible
+- **Mobile (<768px)** : Stack vertical
+
+### Styles Organisés
+
+- `style.css` - Styles globaux (layout, nav, footer)
+- `home.css` - Styles page d'accueil (hero, sections, cards)
+
+## 📚 Fonctionnalités Pédagogiques
+
+✅ **Affichage dynamique** - Éléments chargés depuis JSON
+✅ **Deux vues** - Syntaxe et Attributs (modifiable)
+✅ **Composants réutilisables** - Architecture claire
+✅ **Intégration CodePen** - Exemples testables
+✅ **Démonstrations interactives** - Webcam, capture photo
+✅ **Documentation complète** - En Markdown
+✅ **Performances optimisées** - Build statique Astro
+
+## 🔧 Technologies
+
+| Tech | Usage |
+|------|-------|
+| **Astro** | Framework web moderne (SSG) |
+| **HTML5** | Balises multimédia natives |
+| **CSS3** | Styles responsives et animations |
+| **TypeScript** | Code côté client typé |
+| **Markdown** | Documentation structurée |
+| **JavaScript** | API multimédia (getUserMedia, Canvas, etc.) |
+
+## 📖 Documentation Complète
+
+### Pages disponibles
+
+| Route | Description |
+|-------|------------|
+| `/` | Page d'accueil avec définitions et éléments |
+| `/documentation` | Index complet de tous les éléments |
+| `/elements/[balise]` | Documentation d'un élément (11 pages) |
+| `/api/getUserMedia` | Documentation API JavaScript |
+| `/api/webcam-demo` | Démo interactive webcam |
+
+### Ressources externes
+
+- [Documentation Astro](https://docs.astro.build)
+- [MDN Web Docs - HTML](https://developer.mozilla.org/fr/docs/Web/HTML)
+- [MDN - getUserMedia API](https://developer.mozilla.org/fr/docs/Web/API/MediaDevices/getUserMedia)
+- [Can I Use](https://caniuse.com/) - Compatibilité navigateur
+
+## ⚠️ Points Importants
+
+### API JavaScript et Sécurité
+
+Les API JavaScript (getUserMedia, etc.) sont des **fonctionnalités optionnelles et avancées**.
+
+**Prérequis :**
+
+- HTTPS (ou localhost pour développement)
+- Autorisation de l'utilisateur au runtime
+- Navigateurs modernes (Chrome 53+, Firefox 55+, Safari 11+, Edge 79+)
+
+**Sécurité :**
+
+- ✅ Toutes les captures webcam/micro sont **100% locales**
+- ✅ **Aucune donnée** n'est envoyée à un serveur
+- ✅ Les permissions sont gérées par le navigateur
+
+### Compatibilité Navigateur
+
+Tous les éléments HTML5 sont supportés dans :
+
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 15+
+- Mobile browsers modernes
+
+Voir [Can I Use](https://caniuse.com/) pour les détails par élément.
+
+## 📝 Modifier le Contenu
+
+### Ajouter un nouvel élément
+
+1. Éditez `src/datas/Json/datas.json`
+2. Créez un fichier Markdown dans `src/markdown/`
+3. Redémarrez le serveur : `npm run dev`
+
+### Modifier les styles
+
+- Styles globaux : `src/Styles/style.css`
+- Page d'accueil : `src/Styles/home.css`
+- Styles spécifiques : Dans les fichiers `.astro`
+
+### Ajouter des médias
+
+- Images : `public/assets/img/`
+- Audio : `public/assets/audio/`
+- Vidéo : `public/assets/video/`
+
+## ✨ Auteurs & Crédits
+
+- **Laurent Boyer** - Développement principal
+- **Stéphane Vallejo** - Contributions
+
+GitHub : [@LaurentBoyer1976](https://github.com/LaurentBoyer1976)
+
+## 📄 Licence
+
+Projet pédagogique sous **licence MIT**.
+
+Libre d'utilisation pour l'éducation et les projets personnels.
+
+## 🤝 Contribution
+
+Les contributions sont bienvenues ! Pour contribuer :
+
+1. Fork le projet
+2. Créez une branche (`git checkout -b feature/AmazingFeature`)
+3. Committez les changements (`git commit -m 'Add amazing feature'`)
+4. Poussez vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une Pull Request
+
+## 📞 Support
+
+- **Issues** : Ouvrez une issue sur GitHub
+- **Discussions** : Participez aux discussions du projet
+- **Email** : Contactez directement les auteurs
+
+## 🗺️ Roadmap Future
+
+- [ ] Ajouter des exemples WebRTC
+- [ ] Support de Vimeo et YouTube embeds
+- [ ] Tutoriels vidéo accompagnant le contenu
+- [ ] Quiz interactifs par section
+- [ ] Mode dark/light plus raffiné
+- [ ] Traduction en anglais
+
+---
+
+**Dernière mise à jour** : 14 décembre 2025
+
+**Version du projet** : 1.0.0
+
+**Status** : ✅ Production Ready pour Always Data
 
 - ✅ **Les API JavaScript optionnelles** (getUserMedia pour webcam/micro)
 
@@ -72,7 +371,7 @@ Ce projet est un tutoriel interactif destiné aux débutants pour apprendre à i
 
 - `<track>` - Sous-titres et pistes│   │   └── Layout.astro
 
-## 🚀 Démarrage Rapide
+## 🚀Démarrage Rapide
 
 │   ├── markdown/
 
@@ -120,7 +419,7 @@ npm run dev- `<svg>` - Graphiques vectoriels│   │   └── index.astro
 
 ## 📁 Structure du Projet
 
-```text
+```mermaid
 
 TutoHTMLMedia/- **MediaDevices.getUserMedia()** : Accès webcam et microphone| Commande                   | Action                                           |
 
@@ -200,7 +499,7 @@ TutoHTMLMedia/
 
 ├── src/1. **Configuration** : `vite.config.js` → `astro.config.mjs`
 
-## 🎨 Architecture & Design
+## 🎨Architecture & Design
 
 │   ├── assets/              # Médias (images, audio, vidéo)2. **Point d'entrée** : `index.html` + `src/JS/index.js` → `src/pages/index.astro`
 
@@ -398,7 +697,7 @@ Les API JavaScript (getUserMedia, etc.) sont des fonctionnalités **optionnelles
 
 ---
 
-## 📄 Licence
+## 📄Licence
 
 Projet pédagogique sous licence MIT.
 

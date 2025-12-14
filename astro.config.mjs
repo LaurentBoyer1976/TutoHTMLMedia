@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
+
 export default defineConfig({
-  site: 'https://laurentboyer1976.github.io',
-  base: '/TutoHTMLMedia',
+  site: 'https://tutohtmlmedia-lpdwca-20-26.alwaysdata.net',
+  base: '/', //
   srcDir: './src',
   publicDir: './public',
   outDir: './dist',
