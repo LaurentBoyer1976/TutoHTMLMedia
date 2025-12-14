@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -18,13 +19,13 @@ const { title } = Astro.props;
     <header class="main-header">
       <nav class="main-nav">
         <div class="nav-container">
-          <a href="/" class="logo">
+          <a href={baseUrl} class="logo">
             <span class="logo-icon">🎬</span>
             <span class="logo-text">HTML Media Tuto</span>
           </a>
           <ul class="nav-links">
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/documentation">Documentation</a></li>
+            <li><a href={baseUrl}>Accueil</a></li>
+            <li><a href={`${baseUrl}documentation`}>Documentation</a></li>
             <li><a href="https://developer.mozilla.org/fr/docs/Web/HTML" target="_blank" rel="noopener">MDN</a></li>
           </ul>
         </div>

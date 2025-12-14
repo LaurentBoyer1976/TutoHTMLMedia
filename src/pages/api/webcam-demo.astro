@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import '../../Styles/style.css';
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Démo Webcam - API getUserMedia()">
@@ -55,8 +57,8 @@ import '../../Styles/style.css';
         </section>
 
         <nav class="demo-nav">
-            <a href="/api/getUserMedia" class="btn btn-link">📖 Voir la documentation complète</a>
-            <a href="/" class="btn btn-link">🏠 Retour à l'accueil</a>
+            <a href={`${baseUrl}api/getUserMedia`} class="btn btn-link">📖 Voir la documentation complète</a>
+            <a href={baseUrl} class="btn btn-link">🏠 Retour à l'accueil</a>
         </nav>
     </main>
 </Layout>

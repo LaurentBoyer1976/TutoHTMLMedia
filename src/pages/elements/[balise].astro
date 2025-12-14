@@ -5,6 +5,8 @@ import '../../Styles/style.css';
 import elementsData from '../../datas/Json/datas.json';
 import codepenMapping from '../../datas/Json/codepen-mapping.json';
 
+const baseUrl = import.meta.env.BASE_URL;
+
 export async function getStaticPaths() {
   const elements = elementsData.elements || [];
   return elements.map((element: any) => ({
@@ -83,7 +85,7 @@ try {
 
 <Layout title={`<${balise}> - Tutoriel HTML Media`}>
   <nav class="breadcrumb">
-    <a href="/">← Retour à l'accueil</a>
+    <a href={baseUrl}>← Retour à l'accueil</a>
   </nav>
 
   <main class="element-detail">
@@ -154,15 +156,15 @@ try {
     <!-- Navigation entre éléments -->
     <nav class="element-navigation">
       {prevElement && (
-        <a href={`/elements/${prevElement.balise}`} class="nav-button prev">
+        <a href={`${baseUrl}elements/${prevElement.balise}`} class="nav-button prev">
           ← &lt;{prevElement.balise}&gt;
         </a>
       )}
-      <a href="/" class="nav-button home">
+      <a href={`${baseUrl}`} class="nav-button home">
         Tous les éléments
       </a>
       {nextElement && (
-        <a href={`/elements/${nextElement.balise}`} class="nav-button next">
+        <a href={`${baseUrl}elements/${nextElement.balise}`} class="nav-button next">
           &lt;{nextElement.balise}&gt; →
         </a>
       )}

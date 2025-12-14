@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import '../../Styles/style.css';
 
+const baseUrl = import.meta.env.BASE_URL;
+
 // Pour l'instant, nous avons seulement getUserMedia
 // Cette page pourrait être étendue pour d'autres API à l'avenir
 const apiName = 'getUserMedia';
@@ -21,8 +23,8 @@ try {
 <Layout title={title}>
     <main class="api-doc-container">
         <nav class="breadcrumb">
-            <a href="/">Accueil</a> / 
-            <a href="/documentation">Documentation</a> / 
+            <a href={baseUrl}>Accueil</a> / 
+            <a href={`${baseUrl}documentation`}>Documentation</a> / 
             <span>API JavaScript</span> / 
             <strong>{title}</strong>
         </nav>

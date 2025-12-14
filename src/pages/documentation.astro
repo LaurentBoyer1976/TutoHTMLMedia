@@ -6,6 +6,8 @@ const markdownFiles = [
   'audio', 'video', 'img', 'picture', 'source', 'track',
   'canvas', 'svg', 'figureFigCaption', 'object', 'embed'
 ];
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Documentation - Éléments HTML Media">
@@ -20,7 +22,7 @@ const markdownFiles = [
       <p class="section-desc">Balises HTML5 natives pour intégrer images, audio et vidéo</p>
       <div class="docs-grid">
         {markdownFiles.map(file => (
-          <a href={`/elements/${file.replace('figureFigCaption', 'figure')}`} class="doc-card">
+          <a href={`${baseUrl}elements/${file.replace('figureFigCaption', 'figure')}`} class="doc-card">
             <div class="doc-icon">📄</div>
             <h3>&lt;{file.replace('figureFigCaption', 'figure')}&gt;</h3>
             <p>Voir la documentation →</p>
@@ -36,13 +38,13 @@ const markdownFiles = [
         <span class="badge-optional">Niveau Avancé</span>
       </p>
       <div class="docs-grid">
-        <a href="/api/getUserMedia" class="doc-card api-card">
+        <a href={`${baseUrl}api/getUserMedia`} class="doc-card api-card">
           <div class="doc-icon">🎥</div>
           <h3>getUserMedia()</h3>
           <p>Accès webcam & microphone →</p>
           <span class="badge-api">API JavaScript</span>
         </a>
-        <a href="/api/webcam-demo" class="doc-card demo-card">
+        <a href={`${baseUrl}api/webcam-demo`} class="doc-card demo-card">
           <div class="doc-icon">🚀</div>
           <h3>Démo Webcam</h3>
           <p>Exemple interactif →</p>
