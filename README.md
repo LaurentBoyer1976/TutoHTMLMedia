@@ -665,6 +665,7 @@ const vueActuelle = 'attributs'; // ou 'syntaxe'```markdown
 
 - [MDN Web Docs - HTML](https://developer.mozilla.org/fr/docs/Web/HTML)
 - [MDN - getUserMedia](https://developer.mozilla.org/fr/docs/Web/API/MediaDevices/getUserMedia)
+- [PDF - HTML5 et Multimédia](public/assets/html5-et-multimedia.pdf)
 
 ---
 
@@ -724,4 +725,4 @@ Projet pédagogique sous licence MIT.
 
 ---
 
-**Dernière mise à jour** : 11 décembre 2025
+**Dernière mise à jour** : 14 décembre 2025
