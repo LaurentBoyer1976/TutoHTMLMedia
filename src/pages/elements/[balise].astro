@@ -5,7 +5,7 @@ import '../../Styles/style.css';
 import elementsData from '../../datas/Json/datas.json';
 import codepenMapping from '../../datas/Json/codepen-mapping.json';
 
-const baseUrl = import.meta.env.BASE_URL;
+const baseUrl = import.meta.env.BASE_URL || '/';
 
 export async function getStaticPaths() {
   const elements = elementsData.elements || [];

@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import '../../Styles/style.css';
 
-const baseUrl = import.meta.env.BASE_URL;
+const baseUrl = import.meta.env.BASE_URL || '/';
 ---
 
 <Layout title="Démo Webcam - API getUserMedia()">

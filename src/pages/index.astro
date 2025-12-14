@@ -9,7 +9,7 @@ const elements = elementsData.elements || [];
 const definitions = elementsData.definition || [];
 const definitionContent = definitions.find((def: any) => def.id === 'multimediaRoleInModernWebSite');
 
-const baseUrl = import.meta.env.BASE_URL;
+const baseUrl = import.meta.env.BASE_URL || '/';
 ---
 
 <Layout title="Tutoriel HTML Media - Accueil">
